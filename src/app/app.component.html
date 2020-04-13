@@ -1,3 +1,4 @@
-<app-login></app-login>
-<app-header></app-header>
-<app-menu></app-menu>
+
+<app-header *ngIf="displayNavBar"></app-header>
+<app-menu *ngIf="displayMenu"></app-menu>
+<router-outlet></router-outlet>

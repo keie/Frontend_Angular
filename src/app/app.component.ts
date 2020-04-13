@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tutorial';
+
+  _displayLogin=false;
+
+get displayNavBar(){
+  return this._displayLogin;
 }
+get displayMenu(){
+  return this._displayLogin;
+}
+}
+
