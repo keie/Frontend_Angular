@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginError:"";
   loginForm: FormGroup;
   constructor(private fb:FormBuilder) { }
 
