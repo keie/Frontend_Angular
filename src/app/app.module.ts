@@ -12,7 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthService}from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import {HomeModule} from './shared/components/home/home.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,6 @@ import {HomeModule} from './shared/components/home/home.module';
     
   ],
   imports: [
-    HomeModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,

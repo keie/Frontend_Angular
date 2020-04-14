@@ -15,7 +15,10 @@ const appRoutes:Routes=[
     component:LoginComponent
   },
   {
-    path:'',redirectTo: '/login', pathMatch:'full'
+    path:'', redirectTo:'/login', pathMatch:'full'
+  },
+  {
+    path:'**',loadChildren:'./shared/components/home/home.module#HomeModule'
   }
   
 ];
