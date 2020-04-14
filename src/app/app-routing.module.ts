@@ -4,13 +4,18 @@ import {Routes,RouterModule} from '@angular/router';
 import {LoginComponent} from './shared/components/login/login.component';
 
 
+
 const appRoutes:Routes=[
+  {
+    path:'home',
+    loadChildren:'./shared/components/home/home.module#HomeModule'
+  },
   {
     path: 'login',
     component:LoginComponent
   },
   {
-    path:'',redirectTo: 'login', pathMatch:'full'
+    path:'',redirectTo: '/login', pathMatch:'full'
   }
   
 ];

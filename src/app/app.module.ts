@@ -10,6 +10,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AuthService}from './auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import {HomeModule} from './shared/components/home/home.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,16 +20,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     
   ],
   imports: [
+    HomeModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,
     FormsModule,ReactiveFormsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     BrowserAnimationsModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''}],
+  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
