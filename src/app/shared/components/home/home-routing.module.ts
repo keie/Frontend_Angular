@@ -14,7 +14,7 @@ const homeRoutes : Routes=[
 
 @NgModule({
   imports: [
-    CommonModule,
+    
     RouterModule.forChild(homeRoutes)
   ],
   exports:[RouterModule]

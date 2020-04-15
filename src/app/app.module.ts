@@ -3,15 +3,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import {APP_BASE_HREF} from '@angular/common';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {AuthService}from './auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 import {CacheService} from './auth/cache.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,15 +15,13 @@ import {CacheService} from './auth/cache.service';
     
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    SharedModule,
-    AppRoutingModule,
-    FormsModule,ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
+    AppRoutingModule
+   
   ],
   providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService,CacheService],
   bootstrap: [AppComponent]
