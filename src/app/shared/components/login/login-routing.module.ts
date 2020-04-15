@@ -5,13 +5,8 @@ import { LoginComponent } from './login.component';
 
 const loginRoutes : Routes=[
   {
-    children:[
-      {
-        path:'login',
-        component:LoginComponent,
-        pathMatch: 'full'
-      }
-    ]
+    path:'login',
+    component:LoginComponent
   }
 ];
 
