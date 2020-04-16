@@ -5,7 +5,6 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {AuthService}from './auth/auth.service';
-import {CacheService} from './auth/cache.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule
    
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService,CacheService],
+  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
