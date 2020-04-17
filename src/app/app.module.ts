@@ -7,6 +7,7 @@ import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {AuthService}from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule
    
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService],
+  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

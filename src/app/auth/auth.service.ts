@@ -78,6 +78,10 @@ private clearToken(){
   this.removeItem('jwt');
 }
 
+getAuthStatus():IAuthStatus{
+  return this.getItem('authStatus');
+}
+
 
 
 

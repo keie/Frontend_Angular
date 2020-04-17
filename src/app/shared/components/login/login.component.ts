@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder, private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
+    this.authService.logout();
     this.buildLoginForm();
   }
   buildLoginForm(): void{
