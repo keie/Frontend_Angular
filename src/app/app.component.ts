@@ -27,5 +27,8 @@ get displayNavBar(){
 get displayMenu(){
   return this._displayLogin;
 }
+get displayHome(){
+  return this._displayLogin;
+}
 }
 
