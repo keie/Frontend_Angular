@@ -4,10 +4,6 @@ import { LogoutComponent } from './shared/components/logout/logout.component';
 import { AuthGuard } from './auth/auth.guard';
 
 
-
-
-
-
 const appRoutes:Routes=[
   {
     path: 'home',
@@ -18,6 +14,11 @@ const appRoutes:Routes=[
   {
     path: 'login',
     loadChildren: () => import('./shared/components/login/login.module').then(m => m.LoginModule),
+    pathMatch:'full'
+  },
+  {
+    path: 'customer',
+    loadChildren: () => import('./shared/components/customer/customer.module').then(m => m.CustomerModule),
     pathMatch:'full'
   },
   {

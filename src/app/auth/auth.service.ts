@@ -19,16 +19,20 @@ authStatus=new BehaviorSubject<IAuthStatus>(this.getItem('authStatus') || defaul
 constructor(private httpClient:HttpClient) { 
   super();
   this.authStatus.subscribe(authStatus => {
-    if(globalData.primarysid!=null){
-      this.setItem('authStatus',JSON.stringify(globalData));
-    }else{
-      this.setItem('authStatus',this.authStatus);
-    }
-    
+      if ((typeof this.authStatus==='string')){
+        var token= this.authStatus;
+        this.setItem('authStatus',token);
+      }else{
+        var objJson={
+          "role":this.authStatus.value.role,
+          "unique_name":this.authStatus.value.unique_name,
+          "primarysid":this.authStatus.value.primarysid
+        }
+        this.setItem('authStatus',objJson);
+      }
     
   });
   this.authProvider=this.userAuthProvider;
-  console.log("i am on constructor");
 }
 
 private userAuthProvider(username:string,password:string):Observable<IServerAuthResponse>{
@@ -47,11 +51,9 @@ login(username:string,password:string):Observable<IAuthStatus>{
   );
   loginResponse.subscribe(
     res=>{
-      //this.setItem('authStatus',res);
       globalData=res;
+      //this.setItem('authStatus',res);
       this.authStatus.next(res);
-      console.log("i am on response the value auhStatus is...")
-      console.log( this.authStatus.value)
     },
     err=>{
       this.logout();
@@ -87,7 +89,7 @@ getAuthStatus():IAuthStatus{
 
 }
 export interface IAuthStatus{
-  roles:Roles;
+  role:Roles;
   primarysid:number;
   unique_name:string;
 
@@ -96,5 +98,5 @@ interface IServerAuthResponse{
   access_Token:string;
 }
 
-const defaultAuthStatus:IAuthStatus={roles:Roles.none,primarysid:null,unique_name:null};
-var globalData:IAuthStatus={roles:Roles.none,primarysid:null,unique_name:null};
+const defaultAuthStatus:IAuthStatus={role:Roles.none,primarysid:null,unique_name:null};
+var globalData:IAuthStatus={role:Roles.none,primarysid:null,unique_name:null};
