@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
@@ -21,7 +21,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     CommonModule,
     RouterModule
   ],
-  exports:[
+  providers: [{ provide: APP_BASE_HREF, useValue: '' }],
+  exports: [
     HeaderComponent,
     MenuComponent
   ]

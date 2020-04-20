@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import {APP_BASE_HREF, CommonModule} from '@angular/common';
-import {AuthService}from './auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './auth/auth.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent
-    
+
   ],
   imports: [
     CommonModule,
@@ -21,9 +22,15 @@ import { AuthGuard } from './auth/auth.guard';
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule
-   
+
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''},AuthService,AuthGuard],
+  providers: [AuthService, AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
