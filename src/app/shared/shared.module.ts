@@ -4,7 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './components/logout/logout.component';
-
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -19,7 +19,8 @@ import { LogoutComponent } from './components/logout/logout.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    DataTablesModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   exports: [

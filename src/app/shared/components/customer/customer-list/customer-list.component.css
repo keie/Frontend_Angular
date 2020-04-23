@@ -1,4 +1,9 @@
-.table-responsive{
-    padding: 120px;
-    margin-left: 180px;
-}
+#layoutSidenav_content {
+    padding: 50px 0px 50px 250px;
+  }
+  
+  
+  input {
+    width: 100px;
+  }
+  
