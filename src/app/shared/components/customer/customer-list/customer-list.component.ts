@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { Customer } from '../models/customer';
-import { DataTableDirective } from 'angular-datatables';
-import * as $ from 'jquery';
+import {MatTableDataSource} from '@angular/material/table';
+
+
 
 @Component({
   selector: 'app-customer-list',
@@ -10,69 +11,39 @@ import * as $ from 'jquery';
   styleUrls: ['./customer-list.component.css'],
   providers: [CustomerService]
 })
-export class CustomerListComponent implements OnInit, AfterViewInit {
-  @ViewChild(DataTableDirective, { static: false })
-  datatableElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
+export class CustomerListComponent implements OnInit {
+  
   customers: Customer[] = [];
+  displayedColumns: string[] = ['address', 'birthday', 'id','lastname', 'name','username'];
+ 
+  
   constructor(private customerService: CustomerService) {
-    this.getCustomer(2, 1);
+    
   }
+  listData:MatTableDataSource<any>;
+  
 
   ngOnInit(): void {
-    this.dtOptions = {
-      ajax: 'customers',
-      columns: [
-        {
-          title: 'panel',
-          data: 'panel'
-        },
-        {
-          title: 'address',
-          data: 'address'
-        }, {
-          title: 'birthday',
-          data: 'birthday'
-        }, {
-          title: 'id',
-          data: 'id'
-        },
-        {
-          title: 'lastname',
-          data: 'lastname'
-        },
-        {
-          title: 'name',
-          data: 'name'
-        },
-        {
-          title: 'username',
-          data: 'username'
-        }]
-    };
-  }
-
-  ngAfterViewInit(): void {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.columns().every(function () {
-        const that = this;
-        $('input', this.footer()).on('keyup change', function () {
-          if (that.search() !== this['value']) {
-            that
-              .search(this['value'])
-              .draw();
-          }
+    this.customerService.getCustomerList(2,1).subscribe(
+      list=>{
+        let array=list.map(item=>{
+          return{
+            id:item.id,
+            address:item.address,
+            birthday:item.birthday,
+            lastname:item.lastname,
+            name:item.name,
+            username:item.username
+          };
         });
+        this.listData=new MatTableDataSource(array);
       });
-    });
   }
 
-
-  getCustomer(pages: number, rows: number): void {
-    this.customerService.getCustomerList(pages, rows) //dataService Method
-      .subscribe(
-        response => this.customers = response
-      );
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.listData.filter = filterValue.trim().toLowerCase();
   }
 
+  
 }

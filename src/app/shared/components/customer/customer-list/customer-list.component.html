@@ -13,68 +13,47 @@
           </svg>DataTable Example</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table datatable [dtOptions]="dtOptions" class="table table-bordered" id="dataTable" width="100%"
-              cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Panel</th>
-                  <th>
-                    <input type="text" placeholder="Direccion" name="search-id" />
-                    Direccion
-                  </th>
-                  <th>
-                    <input type="text" placeholder="Fecha de nacimiento" name="search-first-name" />
-                    <br>
-                    Fecha de nacimiento
-                  </th>
-                  <th>
-                    <input type="text" placeholder="Id" name="search-first-name" width="20px" id="inputId" />
-                    Id
-                  </th>
-                  <th>
-                    <input type="text" placeholder="Apellido" name="search-first-name" id="inputApellido" />
-                    Apellido
-                  </th>
-                  <th>
-                    <input type="text" placeholder="Nombre" name="search-first-name" />
-                    Nombre
-                  </th>
-                  <th>
-                    <input type="text" placeholder="Username" name="search-first-name" />
-                    Username
-                  </th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Panel</th>
-                  <th>Direccion</th>
-                  <th>Fecha de nacimiento</th>
-                  <th width="10%">Id</th>
-                  <th>Apellido</th>
-                  <th>Nombre</th>
-                  <th>Username</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr *ngFor="let item of customers">
-                  <td>
-                    <div>
-                      <button>Edit</button>
-                      <button>Delete</button>
-                      <button>View</button>
-                    </div>
-                  </td>
-
-                  <td>{{item.address}}</td>
-                  <td>{{item.birthday}}</td>
-                  <td>{{item.id}}</td>
-                  <td>{{item.lastname}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.username}}</td>
-
-                </tr>
-              </tbody>
+            <mat-form-field>
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+            </mat-form-field>
+            
+            <table mat-table [dataSource]="listData" class="mat-elevation-z8">
+            
+              <!-- Position Column -->
+              <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> address </th>
+                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="birthday">
+                <th mat-header-cell *matHeaderCellDef> birthday </th>
+                <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef> lastname </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef> username </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
           </div>
         </div>
