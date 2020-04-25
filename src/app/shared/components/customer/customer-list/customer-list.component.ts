@@ -3,6 +3,8 @@ import { CustomerService } from './customer.service';
 import { Customer } from '../models/customer';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -17,8 +19,9 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[] = [];
   displayedColumns: string[] = ['actions','address', 'birthday', 'id','lastname', 'name','username'];
   @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator:MatPaginator
   
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService,private dialog:MatDialog) {
     
   }
   listData:MatTableDataSource<any>;
@@ -39,6 +42,7 @@ export class CustomerListComponent implements OnInit {
         });
         this.listData=new MatTableDataSource(array);
         this.listData.sort=this.sort;
+        this.listData.paginator=this.paginator;
       
       });
   }
@@ -46,6 +50,10 @@ export class CustomerListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.listData.filter = filterValue.trim().toLowerCase();
+  }
+
+  onCreate(){
+    //this.dialog.open(CustomerComponent)
   }
 
   

@@ -4,6 +4,8 @@ import { LogoutComponent } from './shared/components/logout/logout.component';
 import { AuthGuard } from './auth/auth.guard';
 
 
+
+
 const appRoutes:Routes=[
   {
     path: 'home',
@@ -19,12 +21,20 @@ const appRoutes:Routes=[
   {
     path: 'customer',
     loadChildren: () => import('./shared/components/customer/customer.module').then(m => m.CustomerModule),
-    pathMatch:'full'
+    pathMatch:'full',
+    canLoad:[AuthGuard]
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./shared/components/customer/customer-register/customer-register.module').then(m => m.CustomerRegisterModule),
+    pathMatch:'full',
+    canLoad:[AuthGuard]
   },
   {
     path:'logout',
     component:LogoutComponent
   },
+  
   {
     path:'', redirectTo:'/login', pathMatch:'full'
   }

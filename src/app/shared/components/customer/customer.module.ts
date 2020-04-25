@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [CustomerListComponent],
   imports: [
@@ -20,7 +22,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     MatIconModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
     
   ],
   exports:[CustomerListComponent]

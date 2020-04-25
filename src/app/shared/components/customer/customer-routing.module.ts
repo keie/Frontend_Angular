@@ -5,15 +5,13 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { Roles } from 'src/app/auth/roles.enum';
 import { AuthGuard } from 'src/app/auth/auth.guard';
 
+
 const customerRoutes : Routes=[
   {
     path:'',
-    children:[
-      {
-        path:'',
-        component:CustomerListComponent
-      }
-    ],
+    component:CustomerListComponent,
+    pathMatch:'full',
+   
     canActivate:[AuthGuard],
     data:{
       expectedRole:Roles.admin
