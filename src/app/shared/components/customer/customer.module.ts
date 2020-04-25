@@ -6,8 +6,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [CustomerListComponent],
   imports: [
@@ -16,7 +17,10 @@ import { MatInputModule } from '@angular/material/input';
     DataTablesModule,
     MatFormFieldModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
     
   ],
   exports:[CustomerListComponent]

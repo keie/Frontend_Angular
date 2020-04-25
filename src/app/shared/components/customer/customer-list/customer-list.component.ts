@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { Customer } from '../models/customer';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 
 
@@ -14,8 +15,8 @@ import {MatTableDataSource} from '@angular/material/table';
 export class CustomerListComponent implements OnInit {
   
   customers: Customer[] = [];
-  displayedColumns: string[] = ['address', 'birthday', 'id','lastname', 'name','username'];
- 
+  displayedColumns: string[] = ['actions','address', 'birthday', 'id','lastname', 'name','username'];
+  @ViewChild(MatSort) sort: MatSort
   
   constructor(private customerService: CustomerService) {
     
@@ -24,7 +25,7 @@ export class CustomerListComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.customerService.getCustomerList(2,1).subscribe(
+    this.customerService.getCustomerList().subscribe(
       list=>{
         let array=list.map(item=>{
           return{
@@ -37,6 +38,8 @@ export class CustomerListComponent implements OnInit {
           };
         });
         this.listData=new MatTableDataSource(array);
+        this.listData.sort=this.sort;
+      
       });
   }
 

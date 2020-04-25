@@ -11,7 +11,11 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  getCustomerList(rows: number, pages: number): Observable<Customer[]> {//endPoint
+  getCustomerListPaginated(rows: number, pages: number): Observable<Customer[]> {//endPoint
     return this.http.get<Customer[]>(`${environment.urlLocal}User/GetListPaginated/${rows}/${pages}`);
+  }
+
+  getCustomerList(): Observable<Customer[]> {//endPoint
+    return this.http.get<Customer[]>(`${environment.urlLocal}User`);
   }
 }
