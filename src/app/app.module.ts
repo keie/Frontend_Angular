@@ -12,6 +12,7 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,7 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
 
   ],
   providers: [AuthService, AuthGuard,

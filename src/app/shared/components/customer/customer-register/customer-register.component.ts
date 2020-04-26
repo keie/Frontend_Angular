@@ -3,6 +3,7 @@ import { CustomerService } from '../customer-list/customer.service';
 import { Customer } from '../models/customer';
 import { RolService } from '../rol/rol.service';
 import { Roles } from 'src/app/auth/roles.enum';
+import { NotificationService } from '../../notification/notification.service';
 
 @Component({
   selector: 'app-customer-register',
@@ -12,7 +13,7 @@ import { Roles } from 'src/app/auth/roles.enum';
 })
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer
-  constructor(public service:CustomerService,public serviceRol:RolService) { 
+  constructor(public service:CustomerService,public serviceRol:RolService, public serviceNotification:NotificationService) { 
   }
   
 
@@ -37,6 +38,7 @@ export class CustomerRegisterComponent implements OnInit {
   onClear(){
     this.service.form.reset();
     this.service.initializeFormGroup();
+    
   }
 
   onSubmit(){
@@ -51,6 +53,8 @@ export class CustomerRegisterComponent implements OnInit {
       
       this.service.form.reset();
       this.service.initializeFormGroup();
+      this.serviceNotification.success(":: Operation Successfully");
+      
     }else{
       console.log('not valid');
     }

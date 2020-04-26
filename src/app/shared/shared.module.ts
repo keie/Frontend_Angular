@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './components/logout/logout.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -19,7 +20,8 @@ import { LogoutComponent } from './components/logout/logout.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatSnackBarModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   exports: [
