@@ -6,5 +6,5 @@ export interface Customer {
     address: string;
     username: string;
     password: string;
-    roles: JSON;
+    roles: [];
 }
