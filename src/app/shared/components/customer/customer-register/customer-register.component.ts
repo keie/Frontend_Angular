@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../customer-list/customer.service';
 
 @Component({
   selector: 'app-customer-register',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerRegisterComponent implements OnInit {
 
-  constructor() { 
-    console.log("register ts");
+  constructor(public service:CustomerService) { 
   }
 
+  roles=[
+    {id:1, value:"administrador"},
+    {id:2,value:"cliente"}
+  ];
+
   ngOnInit(): void {
+  }
+
+  onClear(){
+    this.service.form.reset();
+    this.service.initializeFormGroup();
   }
 
 }
