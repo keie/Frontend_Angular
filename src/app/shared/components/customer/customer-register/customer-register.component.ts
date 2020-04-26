@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../customer-list/customer.service';
 import { Customer } from '../models/customer';
+import { RolService } from '../rol/rol.service';
+import { Roles } from 'src/app/auth/roles.enum';
 
 @Component({
   selector: 'app-customer-register',
@@ -10,17 +12,26 @@ import { Customer } from '../models/customer';
 })
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer
-  constructor(public service:CustomerService) { 
+  constructor(public service:CustomerService,public serviceRol:RolService) { 
   }
   
 
-  roles=[
-    {id:1, value:"administrador"},
-    {id:2,value:"cliente"}
-  ];
+ roles:Array<any>;
 
   ngOnInit(): void {
     this.service.getCustomerList();
+    this.serviceRol.getListRol()
+    .subscribe(list=>{
+      let array=list.map(item=>{
+        return{
+          id:item.id,
+          name:item.name,
+          description:item.description
+        };
+      });
+      this.roles=new Array(array);
+      this.roles=array
+    });
   }
 
   onClear(){

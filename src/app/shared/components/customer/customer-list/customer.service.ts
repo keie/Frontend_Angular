@@ -21,7 +21,7 @@ export class CustomerService {
     address:new FormControl('',Validators.required),
     username:new FormControl('',Validators.email),
     password:new FormControl('',[Validators.required,Validators.minLength(8)]),
-    //$roles:new FormControl('')
+    roles:new FormControl(0)
   });
 
   initializeFormGroup(){
@@ -32,7 +32,8 @@ export class CustomerService {
       birthday:'',
       address:'',
       username:'',
-      password:''
+      password:'',
+      roles:''
     });
   }
 
@@ -57,7 +58,6 @@ export class CustomerService {
       "password":data.password,
       "roles":[]
     }
-    //return this.http.post<any>(`${environment.urlLocal}User`,json)
     return this.http.post(`${environment.urlLocal}User/insert`,json)
     .pipe(
       map((response:any)=>response)
