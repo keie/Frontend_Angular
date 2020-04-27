@@ -1,12 +1,4 @@
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid">
-            <div class="card mb-4">
-                <mat-toolbar>
-                    <span class="fill-remaing-space"></span>
-                    <span>Registro de usuario</span>
-                    <span class="fill-remaing-space"></span>
-                </mat-toolbar>
+
                 <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
                     <mat-grid-list cols=2 rowHeight="300px">
                         <mat-grid-tile>
@@ -20,6 +12,9 @@
                                     <input formControlName="lastname" matInput placeholder="lastname*">
                                     <mat-error>este campo es obligatorio</mat-error>
                                 </mat-form-field>
+                                <mat-form-field>
+                                    <input formControlName="id" matInput placeholder="id" readonly>
+                                </mat-form-field>
                                 
                                 <mat-form-field>
                                     <input formControlName="address" matInput placeholder="address">
@@ -29,14 +24,14 @@
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <div class="controles-container">
-                                <mat-form-field>
+                              <!--  <mat-form-field>
                                     <mat-select formControlName="roles" placeholder="roles">
                                         <mat-option>None</mat-option>
                                         <ng-container *ngFor="let rol of roles">
                                             <mat-option value="{{rol.name}}">{{rol.name}}</mat-option>
                                         </ng-container>
                                     </mat-select>
-                                </mat-form-field>
+                                </mat-form-field>-->
                                 <mat-form-field>
                                     <!--<input formControlName="$rol" matInput [matDatepicker]="picker" placeholder="birthday">-->
                                     <mat-label>birthday</mat-label>
@@ -49,19 +44,16 @@
                                     <mat-error>email invalido</mat-error>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <input formControlName="password" matInput placeholder="password*">
+                                    <input formControlName="password" matInput placeholder="password">
                                     <mat-error *ngIf="service.form.controls['password'].errors?.required">campo obligatorio</mat-error>
                                     <mat-error *ngIf="service.form.controls['password'].errors?.minLength">clave muy corta</mat-error>
                                 </mat-form-field>
+                                
                                 <div class="button-row">
-                                    <button mat-raised-button color="accent" [disabled]="service.form.invalid">Submit</button>
+                                    <button mat-raised-button color="accent" [disabled]="(service.form.invalid) && !(service.form.get('id').value)">Submit</button>
                                     <button mat-raised-button color="primary" (click)="onClear()">Clear</button>
                                 </div>
                             </div>
                         </mat-grid-tile>
                     </mat-grid-list>
-                </form>
-            </div>
-        </div>
-    </main>
-</div>
+

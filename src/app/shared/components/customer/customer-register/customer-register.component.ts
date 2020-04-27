@@ -4,20 +4,24 @@ import { Customer } from '../models/customer';
 import { RolService } from '../rol/rol.service';
 import { Roles } from 'src/app/auth/roles.enum';
 import { NotificationService } from '../../notification/notification.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-register',
   templateUrl: './customer-register.component.html',
-  styleUrls: ['./customer-register.component.css'],
-  providers:[CustomerService]
+  styleUrls: ['./customer-register.component.css']
 })
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer
-  constructor(public service:CustomerService,public serviceRol:RolService, public serviceNotification:NotificationService) { 
+  constructor(public service:CustomerService,
+    public serviceRol:RolService, 
+    public serviceNotification:NotificationService,
+    public dialogRef:MatDialogRef<CustomerRegisterComponent>) { 
   }
   
 
- roles:Array<any>;
+  roles:Array<any>;
+  flag:number =0;
 
   ngOnInit(): void {
     this.service.getCustomerList();
@@ -32,6 +36,7 @@ export class CustomerRegisterComponent implements OnInit {
       });
       this.roles=new Array(array);
       this.roles=array
+      
     });
   }
 
@@ -43,21 +48,34 @@ export class CustomerRegisterComponent implements OnInit {
 
   onSubmit(){
     if(this.service.form.valid){
-      //this.service.insertCustomer(this.service.form.value);
+      
       const obj=Object.assign({},this.customer,this.service.form.value)
       obj.roles=[]
-      this.service.insertCustomer(obj)
-      .subscribe(response=>{
-        console.log("works!");
-      });
-      
+      if(!this.service.form.get('id').value){
+        this.service.insertCustomer(obj)
+        .subscribe(response=>{
+        console.log("works! insert");
+        });
+      }else{
+        this.service.updateCustomer(obj)
+        .subscribe(response=>{
+        console.log("works! update");
+        });
+      }
       this.service.form.reset();
       this.service.initializeFormGroup();
       this.serviceNotification.success(":: Operation Successfully");
+      this.onClose();
       
     }else{
       console.log('not valid');
     }
+  }
+
+  onClose(){
+    this.service.form.reset();
+    this.service.initializeFormGroup();
+    this.dialogRef.close();
   }
 
 }

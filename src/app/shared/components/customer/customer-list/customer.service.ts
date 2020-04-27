@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {FormGroup,FormControl,Validators} from "@angular/forms";
 import { map, catchError } from 'rxjs/operators';
-
+import * as _ from 'lodash';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,26 +14,26 @@ export class CustomerService {
   customerList:any
   constructor(private http: HttpClient) { }
   form:FormGroup=new FormGroup({
-    //$key:new FormControl(null),
+    id:new FormControl(null),
     name:new FormControl('',Validators.required),
     lastname:new FormControl('',Validators.required),
     birthday:new FormControl('',Validators.required),
     address:new FormControl('',Validators.required),
     username:new FormControl('',Validators.email),
-    password:new FormControl('',[Validators.required,Validators.minLength(8)]),
-    roles:new FormControl(0)
+    password:new FormControl('',[Validators.required,Validators.minLength(8)])
+    //roles:new FormControl(0)
   });
 
   initializeFormGroup(){
     this.form.setValue({
-      //$key:null,
+      id:null,
       name:'',
       lastname:'',
       birthday:'',
       address:'',
       username:'',
-      password:'',
-      roles:''
+      password:''
+      //roles:''
     });
   }
 
@@ -64,17 +64,37 @@ export class CustomerService {
     );
   }
 
+  updateCustomer(data:Customer): Observable<Response>{
+    data.roles=[];
+    var json={
+      "id":data.id,
+      "name":data.name,
+      "lastname":data.lastname,
+      "birthday":data.birthday,
+      "address":data.address,
+      "username":data.username,
+      "password":data.password,
+      "roles":[]
+    }
+    return this.http.put(`${environment.urlLocal}User/update`,json)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
   
 
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
-    } else {
-      console.error(`Backend returned code ${error.status}, body was:`);
-      console.error(error.error);
-    }
-    return throwError('Something bad happened; please try again later.');
+  populateForm(customer){
+    this.form.setValue({
+      id:customer.id,
+      name:customer.name,
+      lastname:customer.lastname,
+      birthday:customer.birthday,
+      address:customer.address,
+      username:customer.username,
+      password:customer.password
+    });
   }
 
 }
