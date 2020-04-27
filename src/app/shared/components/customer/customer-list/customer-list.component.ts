@@ -6,6 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerRegisterComponent } from '../customer-register/customer-register.component';
+import { NotificationService } from '../../notification/notification.service';
 
 
 
@@ -21,7 +22,9 @@ export class CustomerListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   
-  constructor(private customerService: CustomerService,private dialog:MatDialog,) {
+  constructor(private customerService: CustomerService,
+    private dialog:MatDialog,
+    private notificationService:NotificationService) {
     
   }
   listData:MatTableDataSource<any>;
@@ -30,16 +33,22 @@ export class CustomerListComponent implements OnInit {
     this.customerService.getCustomerList().subscribe(
       list=>{
         let array=list.map(item=>{
-          return{
-            id:item.id,
-            address:item.address,
-            birthday:item.birthday,
-            lastname:item.lastname,
-            name:item.name,
-            username:item.username,
-            password:item.password.substring(0,1)
-           // roles:item.roles
-          };
+          if(item.boolDelete!=1){
+            return{
+              id:item.id,
+              address:item.address,
+              birthday:item.birthday,
+              lastname:item.lastname,
+              name:item.name,
+              username:item.username,
+              password:item.password.substring(0,1)
+             // roles:item.roles
+            };
+          }
+          
+        });
+        array = array.filter(function(dato){
+          return dato != undefined
         });
         this.listData=new MatTableDataSource(array);
         this.listData.sort=this.sort;
@@ -81,6 +90,17 @@ export class CustomerListComponent implements OnInit {
     this.dialog.afterAllClosed.subscribe(res => {
       this.reload();
       });
+  }
+
+  onDelete(data){
+    if(confirm("Estas seguro de eliminar este registro?")){
+      this.customerService.deleteCustomer(data)
+      .subscribe(res=>{
+        this.reload();
+      });
+      this.notificationService.warn("Registro borrado con exito");
+      
+    }
   }
 
   

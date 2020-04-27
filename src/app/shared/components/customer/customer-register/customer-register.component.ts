@@ -78,4 +78,8 @@ export class CustomerRegisterComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onDelete(id){
+
+  }
+
 }

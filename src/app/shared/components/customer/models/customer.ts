@@ -1,3 +1,4 @@
+
 export interface Customer {
     id: number;
     name: string;
@@ -6,5 +7,6 @@ export interface Customer {
     address: string;
     username: string;
     password: string;
+    boolDelete:any;
     roles: [];
 }

@@ -81,6 +81,12 @@ export class CustomerService {
       map((response:any)=>response)
     );
   }
+  deleteCustomer(data): Observable<Response>{
+    return this.http.delete(`${environment.urlLocal}User/delete/${data}`)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
 
   
 

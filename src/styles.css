@@ -10,6 +10,13 @@ snack-bar-container.success{
     margin-top: 80px;
 }
 
+snack-bar-container.warn{
+    
+    background-color: orange;
+    color:#fff;
+    margin-top: 80px;
+}
+
 
 snack-bar-container.success simple-snack-bar{
     

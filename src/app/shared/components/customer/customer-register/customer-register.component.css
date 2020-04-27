@@ -28,3 +28,13 @@
   padding: 100px;
   margin-left: 120px;
 }*/
+
+.btn-dialog-close {
+  
+  top: 0;
+  margin-left: 580px;
+  
+  padding: 5px;
+  line-height: 14px;
+  min-width: auto;
+}

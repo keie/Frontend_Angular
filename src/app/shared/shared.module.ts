@@ -7,6 +7,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -25,7 +26,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     RouterModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   exports: [
