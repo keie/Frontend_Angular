@@ -13,10 +13,30 @@
           </svg>DataTable Example</div>
         <div class="card-body">
           <div class="table-responsive">
-            <mat-form-field>
-              <mat-label>Filter</mat-label>
-              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-            </mat-form-field>
+            <div class="containerFilters">
+             
+              <mat-form-field>
+                <mat-label>address</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="address" [formControl]="addressFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>birthday</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="birthday" [formControl]="birthdayFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>lastname</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="lastname" [formControl]="lastnameFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>name</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="name" [formControl]="nameFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>username</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="username" [formControl]="usernameFilter">
+              </mat-form-field>
+          
+            </div>
             <button mat-raised-button (click)="onCreate()">
               <mat-icon>add</mat-icon>create
             </button>
@@ -61,7 +81,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>
               </ng-container>
-              <ng-container matColumnDef="password">
+              <ng-container matColumnDef="password" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> password </th>
                 <td mat-cell *matCellDef="let element"> {{element.password}} </td>
               </ng-container>

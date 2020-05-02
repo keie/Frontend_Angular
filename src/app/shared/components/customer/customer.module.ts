@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTablesModule } from 'angular-datatables';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import {MatDialogModule} from '@angular/material/dialog';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [CustomerListComponent],
@@ -17,13 +12,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     CommonModule,
     CustomerRoutingModule,
     DataTablesModule,
-    MatFormFieldModule,
-    MatTableModule,
-    MatInputModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDialogModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   exports:[CustomerListComponent]

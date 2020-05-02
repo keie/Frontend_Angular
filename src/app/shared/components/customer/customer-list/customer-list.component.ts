@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerRegisterComponent } from '../customer-register/customer-register.component';
 import { NotificationService } from '../../notification/notification.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 
@@ -27,6 +28,16 @@ export class CustomerListComponent implements OnInit {
     private notificationService:NotificationService) {
     
   }
+  
+  
+    addressFilter=new FormControl();
+    birthdayFilter=new FormControl();
+    lastnameFilter=new FormControl();
+    nameFilter=new FormControl();
+    usernameFilter=new FormControl();
+
+  filteredValues={address:"",birthday:"",lastname:"",name:"",username:""}
+  
   listData:MatTableDataSource<any>;
   
   reload(){
@@ -45,7 +56,6 @@ export class CustomerListComponent implements OnInit {
              // roles:item.roles
             };
           }
-          
         });
         array = array.filter(function(dato){
           return dato != undefined
@@ -53,17 +63,62 @@ export class CustomerListComponent implements OnInit {
         this.listData=new MatTableDataSource(array);
         this.listData.sort=this.sort;
         this.listData.paginator=this.paginator;
-      
       });
   }
 
   ngOnInit() {
     this.reload();
+    
+    
+    
+    
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.listData.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    /*const filterValue = (event.target as HTMLInputElement).value;
+    this.listData.filter = filterValue.trim().toLowerCase();*/
+    this.addressFilter.valueChanges.subscribe(addressFilterValue=>{
+      this.filteredValues['address']=addressFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.birthdayFilter.valueChanges.subscribe(birthdayFilterValue=>{
+      this.filteredValues['birthday']=birthdayFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.lastnameFilter.valueChanges.subscribe(lastnameFilterValue=>{
+      this.filteredValues['lastname']=lastnameFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.nameFilter.valueChanges.subscribe(nameFilterValue=>{
+      this.filteredValues['name']=nameFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.usernameFilter.valueChanges.subscribe(usernameFilterValue=>{
+      this.filteredValues['username']=usernameFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+
+    this.listData.filterPredicate=this.customFilterPredicate();
+  }
+
+  
+
+  customFilterPredicate(){
+    const myFilterPredicate=function(data:Customer,filter:string):boolean{
+      let searchString=JSON.parse(filter);
+      let addresFound=data.address.toString().trim().toLowerCase().indexOf(searchString.address.toLowerCase())!==-1
+      let birthdayFound=data.birthday.toString().trim().indexOf(searchString.birthday)!==-1
+      let lastnameFound=data.lastname.toString().trim().indexOf(searchString.lastname)!==-1
+      let nameFound=data.name.toString().trim().indexOf(searchString.name)!==-1
+      let usernameFound=data.username.toString().trim().indexOf(searchString.username)!==-1
+    if(searchString.topFilter){
+      return addresFound || birthdayFound || lastnameFound || nameFound || usernameFound
+    }else{
+      return addresFound && birthdayFound && lastnameFound && nameFound && usernameFound
+    }
+    
+    }
+    return myFilterPredicate;
   }
 
   onCreate(){
