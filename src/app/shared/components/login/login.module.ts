@@ -8,17 +8,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
+    CommonModule,
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
+    MaterialModule
   ],
   exports:[LoginComponent],
   schemas:[NO_ERRORS_SCHEMA ]
