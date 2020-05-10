@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from '../material/material.module';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [],
   imports: [
     CommonModule,
     LoginRoutingModule,
@@ -20,7 +21,7 @@ import { MaterialModule } from '../material/material.module';
     ReactiveFormsModule,
     MaterialModule
   ],
-  exports:[LoginComponent],
+  exports:[],
   schemas:[NO_ERRORS_SCHEMA ]
 })
 export class LoginModule { }

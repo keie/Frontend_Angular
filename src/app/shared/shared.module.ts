@@ -8,6 +8,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MaterialModule } from './components/material/material.module';
+import { LoginModule } from './components/login/login.module';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     HeaderComponent,
     MenuComponent,
-    LogoutComponent
+    LogoutComponent,SpinnerComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -27,12 +33,17 @@ import { MatIconModule } from '@angular/material/icon';
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MaterialModule,
+    LoginModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   exports: [
     HeaderComponent,
-    MenuComponent
+    MenuComponent,SpinnerComponent,LoginComponent
   ]
 })
 export class SharedModule { }

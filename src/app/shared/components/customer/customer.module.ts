@@ -5,6 +5,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../../shared.module';
 
 @NgModule({
   declarations: [CustomerListComponent],
@@ -14,7 +15,8 @@ import { MaterialModule } from '../material/material.module';
     DataTablesModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
     
   ],
   exports:[CustomerListComponent]

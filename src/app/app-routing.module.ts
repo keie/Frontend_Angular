@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
 import { LogoutComponent } from './shared/components/logout/logout.component';
 import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './shared/components/login/login.component';
 
 
 
@@ -15,8 +16,9 @@ const appRoutes:Routes=[
   },
   {
     path: 'login',
-    loadChildren: () => import('./shared/components/login/login.module').then(m => m.LoginModule),
-    pathMatch:'full'
+   /* loadChildren: () => import('./shared/components/login/login.module').then(m => m.LoginModule),
+    pathMatch:'full'*/
+    component:LoginComponent
   },
   {
     path: 'customer',

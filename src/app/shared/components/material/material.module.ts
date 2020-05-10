@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -36,7 +37,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatNativeDateModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatIconModule,MatToolbarModule
+    MatIconModule,MatToolbarModule,
+    MatProgressSpinnerModule
     
   ],
   exports:[MatFormFieldModule,
@@ -54,6 +56,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatNativeDateModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatIconModule,MatToolbarModule]
+    MatIconModule,MatToolbarModule,
+    MatProgressSpinnerModule]
 })
 export class MaterialModule { }

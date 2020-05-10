@@ -22,7 +22,7 @@ export class CustomerListComponent implements OnInit {
   displayedColumns: string[] = ['actions','address', 'id','birthday','lastname', 'name','username','password'];
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
-  
+  isVisible= false;
   constructor(private customerService: CustomerService,
     private dialog:MatDialog,
     private notificationService:NotificationService) {
@@ -41,6 +41,7 @@ export class CustomerListComponent implements OnInit {
   listData:MatTableDataSource<any>;
   
   reload(){
+    this.isVisible=true;
     this.customerService.getCustomerList().subscribe(
       list=>{
         let array=list.map(item=>{
@@ -63,15 +64,12 @@ export class CustomerListComponent implements OnInit {
         this.listData=new MatTableDataSource(array);
         this.listData.sort=this.sort;
         this.listData.paginator=this.paginator;
+        this.isVisible=false;
       });
   }
 
   ngOnInit() {
     this.reload();
-    
-    
-    
-    
   }
 
   applyFilter() {
