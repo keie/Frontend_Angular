@@ -5,11 +5,13 @@ import { RolService } from '../rol/rol.service';
 import { Roles } from 'src/app/auth/roles.enum';
 import { NotificationService } from '../../notification/notification.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-customer-register',
   templateUrl: './customer-register.component.html',
-  styleUrls: ['./customer-register.component.css']
+  styleUrls: ['./customer-register.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer

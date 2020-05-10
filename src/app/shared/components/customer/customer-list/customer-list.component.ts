@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { Customer } from '../models/customer';
 import {MatTableDataSource} from '@angular/material/table';
@@ -14,7 +14,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+  styleUrls: ['./customer-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerListComponent implements OnInit {
   
@@ -24,7 +25,7 @@ export class CustomerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
   constructor(private customerService: CustomerService,
-    private dialog:MatDialog,
+    private dialog: MatDialog,
     private notificationService:NotificationService) {
     
   }
