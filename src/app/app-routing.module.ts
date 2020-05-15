@@ -4,6 +4,7 @@ import { LogoutComponent } from './shared/components/logout/logout.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './shared/components/login/login.component';
 import { PersonalReferenceRoutingModule } from './shared/components/personal-reference/personal-reference-routing.module';
+import { PersonalReferenceModule } from './shared/components/personal-reference/personal-reference.module';
 
 
 
@@ -29,9 +30,8 @@ const appRoutes:Routes=[
   },
   {
     path:'personalReference',
-    loadChildren:()=> import('./shared/components/personal-reference/personal-reference.module').then(m=>PersonalReferenceRoutingModule),
-    pathMatch:'full',
-    canLoad:[AuthGuard]
+    loadChildren:()=> import('./shared/components/personal-reference/personal-reference.module').then(m => m.PersonalReferenceModule),
+    pathMatch:'full'
   },
   {
     path: 'register',
@@ -39,14 +39,18 @@ const appRoutes:Routes=[
     pathMatch:'full',
     canLoad:[AuthGuard]
   },
+  /*{
+    path:'registerPersonalReference',
+    loadChildren:()=> import('./shared/components/personal-reference/personal-reference-register/personal-reference-register.module').then(m=>m.PersonalReferenceRegisterModule),
+  },*/
   {
     path:'logout',
     component:LogoutComponent
-  },
+  }/* ,
   
-  {
-    path:'', redirectTo:'/login', pathMatch:'full'
-  }
+ {
+   path:'', redirectTo:'/login', pathMatch:'full'
+  }*/
   
 ];
 

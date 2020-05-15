@@ -5,23 +5,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { Roles } from 'src/app/auth/roles.enum';
 import { AuthGuard } from 'src/app/auth/auth.guard';
 
-const personalReferenceROutes:Routes=[
+const personalReferenceRoutes:Routes=[
   {
     path:'',
     component:PersonalReferenceListComponent,
     pathMatch:'full',
+    
     canActivate:[AuthGuard],
     data:{
       expectedRole:Roles.admin
     }
   }
-]
+];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(personalReferenceROutes)
+    RouterModule.forChild(personalReferenceRoutes)
   ],
   exports:[RouterModule]
 })

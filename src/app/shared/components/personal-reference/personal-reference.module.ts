@@ -5,6 +5,8 @@ import { SharedModule } from '../../shared.module';
 import { DataTablesModule } from 'angular-datatables';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PersonalReferenceRoutingModule } from './personal-reference-routing.module';
+
 
 
 
@@ -12,11 +14,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   declarations: [PersonalReferenceListComponent],
   imports: [
     CommonModule,
+    PersonalReferenceRoutingModule,
     SharedModule,
     DataTablesModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
+    
+    
   ],
   exports:[PersonalReferenceListComponent]
 })
