@@ -3,6 +3,7 @@ import {Routes,RouterModule} from '@angular/router';
 import { LogoutComponent } from './shared/components/logout/logout.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './shared/components/login/login.component';
+import { PersonalReferenceRoutingModule } from './shared/components/personal-reference/personal-reference-routing.module';
 
 
 
@@ -23,6 +24,12 @@ const appRoutes:Routes=[
   {
     path: 'customer',
     loadChildren: () => import('./shared/components/customer/customer.module').then(m => m.CustomerModule),
+    pathMatch:'full',
+    canLoad:[AuthGuard]
+  },
+  {
+    path:'personalReference',
+    loadChildren:()=> import('./shared/components/personal-reference/personal-reference.module').then(m=>PersonalReferenceRoutingModule),
     pathMatch:'full',
     canLoad:[AuthGuard]
   },

@@ -20,12 +20,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
     MenuComponent,
     LogoutComponent,SpinnerComponent,
     LoginComponent
+    
   ],
   imports: [
     CommonModule,

@@ -10,8 +10,7 @@ import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 @Component({
   selector: 'app-customer-register',
   templateUrl: './customer-register.component.html',
-  styleUrls: ['./customer-register.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./customer-register.component.css']
 })
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer

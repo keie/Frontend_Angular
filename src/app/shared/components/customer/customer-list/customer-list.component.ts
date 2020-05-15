@@ -153,7 +153,6 @@ export class CustomerListComponent implements OnInit {
         this.reload();
       });
       this.notificationService.warn("Registro borrado con exito");
-      
     }
   }
 
