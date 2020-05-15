@@ -37,7 +37,7 @@ export class CustomerListComponent implements OnInit {
     nameFilter=new FormControl();
     usernameFilter=new FormControl();
 
-  filteredValues={address:"",birthday:"",lastname:"",name:"",username:""}
+  filteredValues={id:"",address:"",birthday:"",lastname:"",name:"",username:""}
   
   listData:MatTableDataSource<any>;
   

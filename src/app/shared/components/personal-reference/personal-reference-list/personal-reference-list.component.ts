@@ -18,7 +18,7 @@ import { PersonalReferenceService } from '../personal-reference.service';
 export class PersonalReferenceListComponent implements OnInit {
   
   pReferences: PersonalReference[]=[]
-  displayedColumns:string[]=["id","age","greaterThan","smallerThan","gender"]
+  displayedColumns:string[]=['id','age','greaterThan','smallerThan','gender']
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
@@ -68,22 +68,22 @@ export class PersonalReferenceListComponent implements OnInit {
   applyFilter(){
     
     this.ageFilter.valueChanges.subscribe(ageFilterValue=>{
-      this.ageFilter['age']=ageFilterValue;
+      this.filteredValues['age']=ageFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
 
     this.genderFilter.valueChanges.subscribe(genderFilterValue=>{
-      this.genderFilter['gender']=genderFilterValue;
+      this.filteredValues['gender']=genderFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
 
     this.smallerThanFilter.valueChanges.subscribe(smallerThanFilterValue=>{
-      this.smallerThanFilter['smallerThan']=smallerThanFilterValue;
+      this.filteredValues['smallerThan']=smallerThanFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
 
     this.greaterThanFilter.valueChanges.subscribe(greaterThanFilterValue=>{
-      this.greaterThanFilter['greaterThan']=greaterThanFilterValue;
+      this.filteredValues['greaterThan']=greaterThanFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
     this.listData.filterPredicate=this.customFilterPredicate();
