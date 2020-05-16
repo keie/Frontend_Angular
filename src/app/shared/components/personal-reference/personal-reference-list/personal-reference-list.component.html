@@ -27,7 +27,7 @@
                                 <input matInput (keyup)="applyFilter()" placeholder="greater than" [formControl]="greaterThanFilter">
                             </mat-form-field>
                         </div>
-                        <button mat-raised-button >
+                        <button mat-raised-button  (click)="onCreate()">
                             <mat-icon>add</mat-icon>create
                           </button>
                           <table mat-table [dataSource]="listData" class="mat-elevation-z8" matSort>

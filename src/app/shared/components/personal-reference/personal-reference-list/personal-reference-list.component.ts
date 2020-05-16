@@ -7,6 +7,7 @@ import { NotificationService } from '../../notification/notification.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PersonalReference } from '../models/PersonalReference';
 import { PersonalReferenceService } from '../personal-reference.service';
+import { PersonalReferenceRegisterComponent } from '../personal-reference-register/personal-reference-register.component';
 
 @Component({
   selector: 'app-personal-reference-list',
@@ -104,5 +105,19 @@ export class PersonalReferenceListComponent implements OnInit {
     }
     return myFilterPredicate
   }
+
+  onCreate(){
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    this.dialog.open(PersonalReferenceRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  
 
 }

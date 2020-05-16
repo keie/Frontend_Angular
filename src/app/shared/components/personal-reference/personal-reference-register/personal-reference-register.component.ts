@@ -36,28 +36,28 @@ export class PersonalReferenceRegisterComponent implements OnInit {
 
   onSubmit(){
     if(this.service.form.valid){
-      
       const obj=Object.assign({},this.pReference,this.service.form.value)
-      
       if(!this.service.form.get('id').value){
         this.service.insertPersonalReference(obj)
         .subscribe(response=>{
-        console.log("works! insert");
+          if(response!=null){
+            this.service.form.reset();
+            this.service.initializeFormGroup();
+            this.serviceNotification.success(":: Operation Successfully");
+            this.onClose();
+          }
         });
-      }/*else{
+      }
+      
+      /*else{
         this.service.updateCustomer(obj)
         .subscribe(response=>{
         console.log("works! update");
         });
       }*/
-      this.service.form.reset();
-      this.service.initializeFormGroup();
-      this.serviceNotification.success(":: Operation Successfully");
+      }
+      this.serviceNotification.error(":: Transaction Error")
       this.onClose();
-      
-    }else{
-      console.log('not valid');
-    }
   }
 
 }
