@@ -33,6 +33,16 @@ export class PersonalReferenceService {
       gender:''
     });
   }
+
+  populateForm(Preference){
+    this.form.setValue({
+      id:Preference.id,
+      age:Preference.age,
+      greaterThan:Preference.greaterThan,
+      smallerThan:Preference.smallerThan,
+      gender:Preference.gender
+    });
+  }
   
   getPersonReferenceList():Observable<PersonalReference[]>{
     var response=this.http.get<PersonalReference[]>(`${environment.urlLocal}personalReference`);
@@ -48,6 +58,28 @@ export class PersonalReferenceService {
       "gender":data.gender
     }
     return this.http.post(`${environment.urlLocal}personalReference/insert`,json)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
+  updatePersonalReference(data:PersonalReference): Observable<Response>{
+    var json={
+      "id":parseInt(data.id),
+      "age":parseInt(data.age),
+      "greaterThan":parseInt(data.greaterThan),
+      "smallerThan":parseInt(data.smallerThan),
+      "gender":data.gender,
+      "boolDelete":0
+    }
+    return this.http.put(`${environment.urlLocal}personalReference/update`,json)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
+  deletePersonalReference(data): Observable<Response>{
+    return this.http.delete(`${environment.urlLocal}personalReference/delete/${data}`)
     .pipe(
       map((response:any)=>response)
     );

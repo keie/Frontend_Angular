@@ -1,5 +1,5 @@
 export interface PersonalReference{
-    id:number;
+    id:any;
     age:any;
     greaterThan:any;
     smallerThan:any;

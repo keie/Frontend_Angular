@@ -19,7 +19,7 @@ import { PersonalReferenceRegisterComponent } from '../personal-reference-regist
 export class PersonalReferenceListComponent implements OnInit {
   
   pReferences: PersonalReference[]=[]
-  displayedColumns:string[]=['id','age','greaterThan','smallerThan','gender']
+  displayedColumns:string[]=['actions','id','age','greaterThan','smallerThan','gender']
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
@@ -118,6 +118,28 @@ export class PersonalReferenceListComponent implements OnInit {
       });
   }
 
-  
+  onEdit(row){
+    this.pReferenceService.populateForm(row);
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    console.log(this.pReferenceService.form)
+    this.dialog.open(PersonalReferenceRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  onDelete(data){
+    if(confirm("Estas seguro de eliminar este registro?")){
+      this.pReferenceService.deletePersonalReference(data)
+      .subscribe(res=>{
+        this.reload();
+      });
+      this.notificationService.warn("Registro borrado con exito");
+    }
+  }
 
 }

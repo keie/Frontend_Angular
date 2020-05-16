@@ -35,12 +35,14 @@ export class PersonalReferenceRegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    var flag=0;
     if(this.service.form.valid){
       const obj=Object.assign({},this.pReference,this.service.form.value)
       if(!this.service.form.get('id').value){
         this.service.insertPersonalReference(obj)
         .subscribe(response=>{
           if(response!=null){
+            flag++;
             this.service.form.reset();
             this.service.initializeFormGroup();
             this.serviceNotification.success(":: Operation Successfully");
@@ -48,16 +50,24 @@ export class PersonalReferenceRegisterComponent implements OnInit {
           }
         });
       }
-      
-      /*else{
-        this.service.updateCustomer(obj)
+      else{
+        this.service.updatePersonalReference(obj)
         .subscribe(response=>{
-        console.log("works! update");
+          if(response!=null){
+            this.service.form.reset();
+            this.service.initializeFormGroup();
+            this.serviceNotification.success(":: Operation Successfully");
+            this.onClose();
+          }
+          
         });
-      }*/
       }
-      this.serviceNotification.error(":: Transaction Error")
-      this.onClose();
+      }
+      if(flag==0){
+        this.serviceNotification.error(":: Transaction Error")
+        this.onClose();
+      }
+      
   }
 
 }
