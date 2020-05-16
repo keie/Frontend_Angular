@@ -1,1 +1,40 @@
-<p>personal-reference-register works!</p>
+<mat-toolbar>
+    <!--<span>{{service.form.controls['id'].value?"Modificacion":"Registro"}}</span>-->
+    <span>REGISTRO</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols=2 rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="age" matInput placeholder="age">
+                    <mat-error>este campo es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="greaterThan" matInput placeholder="greaterThan">
+                    <mat-error>este campo es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="smallerThan" matInput placeholder="greaterThan">
+                    <mat-error>este campo es obligatorio</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <mat-select formControlName="gender" placeholder="gender">
+                        <mat-option value="M">Masculino</mat-option>
+                        <mat-option value="F">Femenino</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="accent" [disabled]="(service.form.invalid) && !(service.form.get('id').value)">Submit</button>
+                    <button mat-raised-button color="primary" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

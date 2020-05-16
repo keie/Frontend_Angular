@@ -39,10 +39,10 @@ const appRoutes:Routes=[
     pathMatch:'full',
     canLoad:[AuthGuard]
   },
-  /*{
+  {
     path:'registerPersonalReference',
     loadChildren:()=> import('./shared/components/personal-reference/personal-reference-register/personal-reference-register.module').then(m=>m.PersonalReferenceRegisterModule),
-  },*/
+  },
   {
     path:'logout',
     component:LogoutComponent

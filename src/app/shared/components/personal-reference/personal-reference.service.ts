@@ -24,11 +24,33 @@ export class PersonalReferenceService {
     gender:new FormControl('',Validators.required)
   });
 
+  initializeFormGroup(){
+    this.form.setValue({
+      id:null,
+      age:'',
+      greaterThan:'',
+      smallerThan:'',
+      gender:''
+    });
+  }
   
   getPersonReferenceList():Observable<PersonalReference[]>{
     var response=this.http.get<PersonalReference[]>(`${environment.urlLocal}personalReference`);
     this.pReferenceList=response;
     return response;
+  }
+
+  insertPersonalReference(data:PersonalReference):Observable<Response>{
+    var json={
+      "age":parseInt(data.age),
+      "greaterThan":parseInt(data.greaterThan),
+      "smallerThan":parseInt(data.smallerThan),
+      "gender":data.gender
+    }
+    return this.http.post(`${environment.urlLocal}personalReference/insert`,json)
+    .pipe(
+      map((response:any)=>response)
+    );
   }
 
 

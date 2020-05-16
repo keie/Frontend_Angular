@@ -1,8 +1,8 @@
 export interface PersonalReference{
     id:number;
-    age:number;
-    greaterThan:number;
-    smallerThan:number;
-    gender:string;
+    age:any;
+    greaterThan:any;
+    smallerThan:any;
+    gender:any;
     boolDelete:any
 }

@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonalReferenceRegisterComponent } from './personal-reference-register.component';
-import { PersonalReferenceRoutingModule } from '../personal-reference-routing.module';
+import { PersonalReferenceRegisterRoutingModule } from './personal-reference-register-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from '../../material/material.module';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 
 
@@ -9,8 +14,16 @@ import { PersonalReferenceRoutingModule } from '../personal-reference-routing.mo
   declarations: [PersonalReferenceRegisterComponent],
   imports: [
     CommonModule,
-    PersonalReferenceRoutingModule
+    PersonalReferenceRegisterRoutingModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule
   ],
-  exports:[PersonalReferenceRegisterComponent]
+  exports:[PersonalReferenceRegisterComponent,FormsModule],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  
+  ]
 })
 export class PersonalReferenceRegisterModule { }
