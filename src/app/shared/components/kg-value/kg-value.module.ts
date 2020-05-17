@@ -6,6 +6,7 @@ import { DataTablesModule } from 'angular-datatables/src/angular-datatables.modu
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared.module';
+import { KgValueRegisterComponent } from './kg-value-register/kg-value-register.component';
 
 
 
@@ -14,7 +15,6 @@ import { SharedModule } from '../../shared.module';
   imports: [
     CommonModule,
     KgValueRoutingModule,
-    //DataTablesModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,

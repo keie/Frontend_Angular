@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonalReference } from '../models/PersonalReference';
-import { PersonalReferenceService } from '../personal-reference.service';
+import { KgValue } from '../models/kgvalue';
+import { KgValueService } from '../kg-value.service';
 import { NotificationService } from '../../notification/notification.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PersonalReferenceRegisterComponent } from '../../personal-reference/personal-reference-register/personal-reference-register.component';
 
 @Component({
-  selector: 'app-personal-reference-register',
-  templateUrl: './personal-reference-register.component.html',
-  styleUrls: ['./personal-reference-register.component.css']
+  selector: 'app-kg-value-register',
+  templateUrl: './kg-value-register.component.html',
+  styleUrls: ['./kg-value-register.component.css']
 })
-export class PersonalReferenceRegisterComponent implements OnInit {
-  
-  pReference:PersonalReference
-  constructor(public service:PersonalReferenceService,
+export class KgValueRegisterComponent implements OnInit {
+
+  kbValue:KgValue
+  constructor(public service:KgValueService,
     public serviceNotification:NotificationService,
     public dialogRef:MatDialogRef<PersonalReferenceRegisterComponent>) { }
-
-  flag:number=0
+    flag:number=0
 
   ngOnInit(): void {
-    this.service.getPersonReferenceList();
-
+    this.service.getKgValueList();
   }
 
   onClear(){
@@ -33,29 +32,32 @@ export class PersonalReferenceRegisterComponent implements OnInit {
     this.service.initializeFormGroup();
     this.dialogRef.close();
   }
+  timeResponse(){
+     this.serviceNotification.error(":: Transaction Error");
+  }
 
   onSubmit(){
     var flag=0;
-    
       if(this.service.form.valid){
-        const obj=Object.assign({},this.pReference,this.service.form.value)
+        const obj=Object.assign({},this.kbValue,this.service.form.value)
         if(!this.service.form.get('id').value){
-          this.service.insertPersonalReference(obj)
+          this.service.insertKgValue(obj)
           .subscribe(response=>{
-            if(response!=null){
+            if(response.status!=0){
               flag++;
               this.service.form.reset();
               this.service.initializeFormGroup();
               this.serviceNotification.success(":: Operation Successfully");
               this.onClose();
             }
+            
           },
           err=>{
-            this.serviceNotification.error(err)
+            this.serviceNotification.error(":: Transaction Error :");
             this.onClose();
           });
         }
-        else{
+        /*else{
           this.service.updatePersonalReference(obj)
           .subscribe(response=>{
             if(response!=null){
@@ -70,7 +72,7 @@ export class PersonalReferenceRegisterComponent implements OnInit {
             this.serviceNotification.error(err)
             this.onClose();
           });
+        }*/
         }
-      }
-  }
+    }
 }

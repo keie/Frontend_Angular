@@ -56,11 +56,19 @@ export class CustomerRegisterComponent implements OnInit {
         this.service.insertCustomer(obj)
         .subscribe(response=>{
         console.log("works! insert");
+        },
+        err=>{
+          this.serviceNotification.error(err)
+          this.onClose();
         });
       }else{
         this.service.updateCustomer(obj)
         .subscribe(response=>{
         console.log("works! update");
+        },
+        err=>{
+          this.serviceNotification.error(err)
+          this.onClose();
         });
       }
       this.service.form.reset();

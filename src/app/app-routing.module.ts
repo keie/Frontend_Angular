@@ -49,6 +49,11 @@ const appRoutes:Routes=[
     pathMatch:'full'
   },
   {
+    path:'kgvaluesRegister',
+    loadChildren:()=> import('./shared/components/kg-value/kg-value-register/kg-value-register.module').then(m => m.KgValueRegisterModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,
