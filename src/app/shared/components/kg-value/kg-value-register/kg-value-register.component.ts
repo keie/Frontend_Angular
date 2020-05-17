@@ -57,8 +57,8 @@ export class KgValueRegisterComponent implements OnInit {
             this.onClose();
           });
         }
-        /*else{
-          this.service.updatePersonalReference(obj)
+        else{
+          this.service.updateKgValue(obj)
           .subscribe(response=>{
             if(response!=null){
               this.service.form.reset();
@@ -72,7 +72,7 @@ export class KgValueRegisterComponent implements OnInit {
             this.serviceNotification.error(err)
             this.onClose();
           });
-        }*/
+        }
         }
     }
 }

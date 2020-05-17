@@ -28,6 +28,14 @@ export class KgValueService {
     });
   }
 
+  populateForm(kgvList){
+    this.form.setValue({
+      id:kgvList.id,
+      firstValue:kgvList.firstValue,
+      secondValue:kgvList.secondValue
+    });
+  }
+
   getKgValueList(): Observable<KgValue[]> {//endPoint
     var response=this.http.get<KgValue[]>(`${environment.urlLocal}kgvalue`);
     this.kgvList=response
@@ -37,8 +45,8 @@ export class KgValueService {
   insertKgValue(data:KgValue): Observable<Response>{
     
     var json={
-      "firstValue":parseInt(data.firstValue),
-      "lastname":parseInt(data.secondValue)
+      "firstValue":parseFloat(data.firstValue),
+      "secondValue":parseFloat(data.secondValue)
     }
     
     return this.http.post(`${environment.urlLocal}kgvalue/insert`,json)
@@ -48,16 +56,30 @@ export class KgValueService {
     );
   }
 
+  updateKgValue(data:KgValue): Observable<Response>{
+    var json={
+      "id":parseInt(data.firstValue),
+      "firstValue":parseFloat(data.firstValue),
+      "secondValue":parseFloat(data.secondValue),
+      "boolDelete":0
+    }
+    return this.http.put(`${environment.urlLocal}kgvalue/update`,json)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
+  deleteKgValue(data): Observable<Response>{
+    return this.http.delete(`${environment.urlLocal}kgvalue/delete/${data}`)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
   
 
 
-  populateForm(data){
-    this.form.setValue({
-      id:data.id,
-      firstValue:data.firstValue,
-      secondValue:data.secondValue
-    });
-  }
+  
 
 
 }

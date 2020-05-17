@@ -3,10 +3,12 @@ import { KgValue } from '../models/kgvalue';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { KgValueService } from '../kg-value.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationService } from '../../notification/notification.service';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { PersonalReferenceRegisterComponent } from '../../personal-reference/personal-reference-register/personal-reference-register.component';
+import { KgValueRegisterComponent } from '../kg-value-register/kg-value-register.component';
 
 
 @Component({
@@ -21,7 +23,9 @@ export class KgValueListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
-  constructor(private kgService:KgValueService) { }
+  
+  constructor(private kgService:KgValueService, 
+    private dialog:MatDialog,private notificationService:NotificationService) { }
 
     firstValueFilter=new FormControl();
     secondValueFilter=new FormControl();
@@ -83,5 +87,41 @@ export class KgValueListComponent implements OnInit {
       }
     }
     return myFilterPredicate;
+  }
+
+  onCreate(){
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    this.dialog.open(KgValueRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  onEdit(row){
+    this.kgService.populateForm(row);
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    console.log(this.kgService.form)
+    this.dialog.open(KgValueRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  onDelete(data){
+    if(confirm("Estas seguro de eliminar este registro?")){
+      this.kgService.deleteKgValue(data)
+      .subscribe(res=>{
+        this.reload();
+      });
+      this.notificationService.warn("Registro borrado con exito");
+    }
   }
 }

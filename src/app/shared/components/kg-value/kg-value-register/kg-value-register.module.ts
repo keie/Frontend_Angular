@@ -4,7 +4,7 @@ import { KgValueRoutingModule } from '../kg-value-routing.module';
 import { KgValueRegisterComponent } from './kg-value-register.component';
 import { KgValueRegisterRoutingModule } from './kg-value-register-routing.module';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -22,7 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MaterialModule,
     SharedModule
   ],
-  exports:[KgValueRegisterComponent],
+  exports:[KgValueRegisterComponent,FormsModule],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
