@@ -44,6 +44,11 @@ const appRoutes:Routes=[
     loadChildren:()=> import('./shared/components/personal-reference/personal-reference-register/personal-reference-register.module').then(m=>m.PersonalReferenceRegisterModule),
   },
   {
+    path:'kgvalues',
+    loadChildren:()=> import('./shared/components/kg-value/kg-value.module').then(m => m.KgValueModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,
