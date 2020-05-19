@@ -58,7 +58,7 @@ export class KgValueService {
 
   updateKgValue(data:KgValue): Observable<Response>{
     var json={
-      "id":parseInt(data.firstValue),
+      "id":parseInt(data.id),
       "firstValue":parseFloat(data.firstValue),
       "secondValue":parseFloat(data.secondValue),
       "boolDelete":0

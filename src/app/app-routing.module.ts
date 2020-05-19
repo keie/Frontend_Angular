@@ -54,6 +54,16 @@ const appRoutes:Routes=[
     pathMatch:'full'
   },
   {
+    path:'sizevalueList',
+    loadChildren:()=> import('./shared/components/size-value/size-value.module').then(m => m.SizeValueModule),
+    pathMatch:'full'
+  },
+  {
+    path:'sizevalueRegister',
+    loadChildren:()=> import('./shared/components/size-value/size-value-register/size-value-register.module').then(m => m.SizeValueRegisterModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,

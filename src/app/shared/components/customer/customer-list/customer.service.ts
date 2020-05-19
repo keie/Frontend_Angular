@@ -56,6 +56,7 @@ export class CustomerService {
       "address":data.address,
       "username":data.username,
       "password":data.password,
+      "gender":"M",
       "roles":[]
     }
     return this.http.post(`${environment.urlLocal}User/insert`,json)

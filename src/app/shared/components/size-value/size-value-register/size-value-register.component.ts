@@ -1,47 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { KgValue } from '../models/kgvalue';
-import { KgValueService } from '../kg-value.service';
+import { SizeValue } from '../models/sizeValue';
+import { SizeValueService } from '../size-value.service';
 import { NotificationService } from '../../notification/notification.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PersonalReferenceRegisterComponent } from '../../personal-reference/personal-reference-register/personal-reference-register.component';
 
 @Component({
-  selector: 'app-kg-value-register',
-  templateUrl: './kg-value-register.component.html',
-  styleUrls: ['./kg-value-register.component.css']
+  selector: 'app-size-value-register',
+  templateUrl: './size-value-register.component.html',
+  styleUrls: ['./size-value-register.component.css']
 })
-export class KgValueRegisterComponent implements OnInit {
+export class SizeValueRegisterComponent implements OnInit {
 
-  kbValue:KgValue
-  constructor(public service:KgValueService,
+  sizeValue:SizeValue
+  constructor(public service:SizeValueService,
     public serviceNotification:NotificationService,
-    public dialogRef:MatDialogRef<KgValueRegisterComponent>) { }
-    flag:number=0
+    public dialogRef:MatDialogRef<SizeValueRegisterComponent>) { }
 
   ngOnInit(): void {
-    this.service.getKgValueList();
+    this.service.getSizeValueList();
   }
 
   onClear(){
     this.service.form.reset();
     this.service.initializeFormGroup();
   }
-
   onClose(){
     this.service.form.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
   }
-  timeResponse(){
-     this.serviceNotification.error(":: Transaction Error");
-  }
 
   onSubmit(){
     var flag=0;
       if(this.service.form.valid){
-        const obj=Object.assign({},this.kbValue,this.service.form.value)
+        const obj=Object.assign({},this.sizeValue,this.service.form.value)
         if(!this.service.form.get('id').value){
-          this.service.insertKgValue(obj)
+          this.service.insertSizeValue(obj)
           .subscribe(response=>{
             if(response.status!=0){
               flag++;
@@ -58,7 +52,7 @@ export class KgValueRegisterComponent implements OnInit {
           });
         }
         else{
-          this.service.updateKgValue(obj)
+          this.service.updateSizeValue(obj)
           .subscribe(response=>{
             if(response!=null){
               this.service.form.reset();
@@ -75,4 +69,5 @@ export class KgValueRegisterComponent implements OnInit {
         }
         }
     }
+
 }
