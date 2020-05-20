@@ -64,6 +64,11 @@ const appRoutes:Routes=[
     pathMatch:'full'
   },
   {
+    path:'statusNutritionGeneral',
+    loadChildren:()=> import('./shared/components/status-nutrition-general/status-nutrition-general.module').then(m => m.StatusNutritionGeneralModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,
