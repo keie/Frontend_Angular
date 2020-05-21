@@ -69,6 +69,11 @@ const appRoutes:Routes=[
     pathMatch:'full'
   },
   {
+    path:'statusNutritionGeneralRegister',
+    loadChildren:()=> import('./shared/components/status-nutrition-general/status-nutrition-general-register/status-nutrition-general-register.module').then(m => m.StatusNutritionGeneralRegisterModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,

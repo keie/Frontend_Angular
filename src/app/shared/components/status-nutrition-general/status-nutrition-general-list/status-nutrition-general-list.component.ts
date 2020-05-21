@@ -3,10 +3,11 @@ import { statusNutritionGeneral } from '../models/statusNutritionGeneral';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { StatusNutritionGeneralService } from '../status-nutrition-general.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationService } from '../../notification/notification.service';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { StatusNutritionGeneralRegisterComponent } from '../status-nutrition-general-register/status-nutrition-general-register.component';
 
 @Component({
   selector: 'app-status-nutrition-general-list',
@@ -55,7 +56,7 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       return this.colorExcL;
     }
   reload(){
-    //this.isVisible=true;
+    this.isVisible=true;
     this.statusNservice.getStatusNutritionList().subscribe(
       list=>{
         let array=list.map(item=>{
@@ -108,6 +109,17 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       }
     }
     return myFilterPredicate;
+  }
+  onCreate(){
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    this.dialog.open(StatusNutritionGeneralRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
   }
 
 }

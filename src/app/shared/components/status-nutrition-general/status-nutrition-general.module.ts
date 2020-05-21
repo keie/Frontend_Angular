@@ -5,6 +5,7 @@ import { StatusNutritionGeneralRoutingModule } from './status-nutrition-general-
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared.module';
+import { StatusNutritionGeneralRegisterComponent } from './status-nutrition-general-register/status-nutrition-general-register.component';
 
 
 

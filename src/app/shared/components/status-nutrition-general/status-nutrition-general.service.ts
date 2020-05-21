@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { statusNutritionGeneral } from './models/statusNutritionGeneral';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,19 @@ export class StatusNutritionGeneralService {
   constructor(private http:HttpClient) { }
   form:FormGroup=new FormGroup({
     id:new FormControl(null),
-    idKgVal: new FormControl(0),
-    idSizeVal:new FormControl(0),
-    idPreference:new FormControl(0),
-    idGrade:new FormControl(0)
+    kgValues: new FormControl('',Validators.required),
+    sizeValues:new FormControl('',Validators.required),
+    pReferences:new FormControl('',Validators.required),
+    grades:new FormControl('',Validators.required)
   })
 
   initializeFormGroup(){
     this.form.setValue({
       id:null,
-      idKgVal:'',
-      idSizeVal:'',
-      idPreference:'',
-      idGrade:''
+      kgValues:'',
+      sizeValues:'',
+      pReferences:'',
+      grades:''
     });
   }
 
@@ -44,6 +45,28 @@ export class StatusNutritionGeneralService {
     var response=this.http.get<statusNutritionGeneral[]>(`${environment.urlLocal}statusNutritionGeneral`);
     this.statusNutrition=response
     return response;
+  }
+
+  insertKgValue(data:statusNutritionGeneral): Observable<Response>{
+    
+    var json={
+      
+      "kgValues":[],
+      "pReferences":[],
+      "sizeValues":[],
+      "grades":[],
+      "idPreference":parseInt(data.pReferences),
+      "idKgVal":parseInt(data.kgValues),
+      "idSizeVal":parseInt(data.sizeValues),
+      "idGrade":parseInt(data.grades),
+      "boolDelete":0
+    }
+    
+    return this.http.post(`${environment.urlLocal}statusNutritionGeneral/insert`,json)
+    .pipe(
+      map((response:any)=>response)
+      
+    );
   }
 
 

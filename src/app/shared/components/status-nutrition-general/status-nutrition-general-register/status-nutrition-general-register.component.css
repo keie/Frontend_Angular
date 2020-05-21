@@ -1,0 +1,40 @@
+#layoutSidenav_content {
+    padding: 70px 0px 50px 250px;
+    
+  }
+
+.form.normal-form{
+  margin:10px;
+  width: 80%;
+}
+.controles-container{
+    width: 100%;
+    padding: 5%;
+}
+
+.controles-container>*{
+  width: 100%;
+}
+
+.add-bottom-padding{
+  padding-bottom: 10px;
+}
+
+.button-row button{
+  margin:5px;
+}
+
+/*form{
+  padding: 100px;
+  margin-left: 120px;
+}*/
+
+.btn-dialog-close {
+  
+  top: 0;
+  margin-left: 580px;
+  
+  padding: 5px;
+  line-height: 14px;
+  min-width: auto;
+}
