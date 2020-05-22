@@ -69,5 +69,12 @@ export class StatusNutritionGeneralService {
     );
   }
 
+  deleteStatusNutritionGeneral(data): Observable<Response>{
+    return this.http.delete(`${environment.urlLocal}statusNutritionGeneral/delete/${data}`)
+    .pipe(
+      map((response:any)=>response)
+    );
+  }
+
 
 }

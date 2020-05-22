@@ -122,4 +122,14 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       });
   }
 
+  onDelete(data){
+    if(confirm("Estas seguro de eliminar este registro?")){
+      this.statusNservice.deleteStatusNutritionGeneral(data)
+      .subscribe(res=>{
+        this.reload();
+      });
+      this.notificationService.warn("Registro borrado con exito");
+    }
+  }
+
 }
