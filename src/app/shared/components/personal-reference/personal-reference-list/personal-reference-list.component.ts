@@ -42,7 +42,7 @@ export class PersonalReferenceListComponent implements OnInit {
   }
 
   reload(){
-   // this.isVisible=true;
+    this.isVisible=true;
     this.pReferenceService.getPersonReferenceList().subscribe(
       list=>{
         let array=list.map(item=>{

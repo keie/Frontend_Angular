@@ -34,7 +34,7 @@ export class SizeValueListComponent implements OnInit {
     listData:MatTableDataSource<any>;
 
     reload(){
-      //this.isVisible=true;
+      this.isVisible=true;
       this.sizeValueService.getSizeValueList().subscribe(
         list=>{
           let array=list.map(item=>{

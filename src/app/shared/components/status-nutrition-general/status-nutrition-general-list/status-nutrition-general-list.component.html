@@ -11,12 +11,12 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="containerFilters">
+                           <!--<mat-form-field>
+                                <mat-label>edad</mat-label>
+                                <input matInput placeholder="age" [formControl]="ageFilter">
+                            </mat-form-field>--> 
                             <mat-form-field>
-                                <mat-label>firstValue</mat-label>
-                                <input matInput (keyup)="applyFilter()" placeholder="age" [formControl]="ageFilter">
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>secondValue</mat-label>
+                                <mat-label>genero sexual</mat-label>
                                 <input matInput (keyup)="applyFilter()" placeholder="gender" [formControl]="genderFilter">
                             </mat-form-field>
                             

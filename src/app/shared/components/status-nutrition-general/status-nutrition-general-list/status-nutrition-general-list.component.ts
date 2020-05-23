@@ -8,6 +8,8 @@ import { NotificationService } from '../../notification/notification.service';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { StatusNutritionGeneralRegisterComponent } from '../status-nutrition-general-register/status-nutrition-general-register.component';
+import { Grade } from '../../grade/models/Grade';
+import { PersonalReference } from '../../personal-reference/models/PersonalReference';
 
 @Component({
   selector: 'app-status-nutrition-general-list',
@@ -32,9 +34,9 @@ export class StatusNutritionGeneralListComponent implements OnInit {
   
   genderFilter=new FormControl();
   ageFilter=new FormControl();
-  filteredValues={id:"",gender:"",age:""}
+  filteredValues={gender:""}
   
-    listData:MatTableDataSource<any>;
+  listData:MatTableDataSource<any>;
 
     getColorBackground(row){
       
@@ -89,23 +91,19 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       this.filteredValues['gender']=genderFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
-    this.ageFilter.valueChanges.subscribe(ageFilterValue=>{
-      this.filteredValues['age']=ageFilterValue;
-      this.listData.filter=JSON.stringify(this.filteredValues);
-    })
+    
     this.listData.filterPredicate=this.customFilterPredicate();
   }
 
   customFilterPredicate(){
     const myFilterPredicate=function(data:statusNutritionGeneral,filter:string):boolean{
       let searchString=JSON.parse(filter);
-      let ageFound=data.grades.age.toString().trim().toLowerCase().indexOf(searchString.firstValue)!==-1
-      let genderFound=data.grades.gender.toString().trim().indexOf(searchString.secondValue)!==-1
+      let genderFound=data.pReferences[0].gender.toString().trim().indexOf(searchString.gender)!==-1
       
       if(searchString.topFilter){
-        return ageFound || genderFound 
+        return  genderFound 
       }else{
-        return ageFound && genderFound 
+        return  genderFound 
       }
     }
     return myFilterPredicate;
