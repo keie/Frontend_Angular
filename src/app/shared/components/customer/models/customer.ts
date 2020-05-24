@@ -10,6 +10,7 @@ export interface Customer {
     gender:any;
     height:any;
     weight:any;
+    nroDoc:any;
     boolDelete:any;
     roles: [];
 }

@@ -17,22 +17,39 @@
             <div class="containerFilters">
              
               <mat-form-field>
-                <mat-label>address</mat-label>
-                <input matInput  (keyup)="applyFilter()" placeholder="address" [formControl]="addressFilter">
+                <mat-label>direccion</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="direccion" [formControl]="addressFilter">
               </mat-form-field>
               <mat-form-field>
-                <mat-label>birthday</mat-label>
-                <input matInput  (keyup)="applyFilter()" placeholder="birthday" [formControl]="birthdayFilter">
+                <mat-label>fech nacimiento</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="fech nacimiento" [formControl]="birthdayFilter">
               </mat-form-field>
               <mat-form-field>
-                <mat-label>lastname</mat-label>
-                <input matInput  (keyup)="applyFilter()" placeholder="lastname" [formControl]="lastnameFilter">
+                <mat-label>apellido</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="apellido" [formControl]="lastnameFilter">
               </mat-form-field>
               <mat-form-field>
-                <mat-label>name</mat-label>
-                <input matInput  (keyup)="applyFilter()" placeholder="name" [formControl]="nameFilter">
+                <mat-label>genero</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="genero" [formControl]="genderFilter">
               </mat-form-field>
               <mat-form-field>
+                <mat-label>estatura</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="estatura" [formControl]="heightFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>peso corporal</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="peso corporal" [formControl]="weightFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>nro documento</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="nro documento" [formControl]="nroDocFilter">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>correo</mat-label>
+                <input matInput  (keyup)="applyFilter()" placeholder="nro documento" [formControl]="usernameFilter">
+              </mat-form-field>
+             
+             <mat-form-field>
                 <mat-label>username</mat-label>
                 <input matInput  (keyup)="applyFilter()" placeholder="username" [formControl]="usernameFilter">
               </mat-form-field>
@@ -53,13 +70,13 @@
               </ng-container>
               <!-- Position Column -->
               <ng-container matColumnDef="address">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> address </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> direccion </th>
                 <td mat-cell *matCellDef="let element"> {{element.address}} </td>
               </ng-container>
             
               <!-- Name Column -->
               <ng-container matColumnDef="birthday">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> birthday </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> fech nacimiento </th>
                 <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
               </ng-container>
             
@@ -68,24 +85,40 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
                 <td mat-cell *matCellDef="let element"> {{element.id}} </td>
               </ng-container>
+              <ng-container matColumnDef="nroDoc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> nro documento </th>
+                <td mat-cell *matCellDef="let element"> {{element.nroDoc}} </td>
+              </ng-container>
+              <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> genero </th>
+                <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+              </ng-container>
             
               <!-- Symbol Column -->
               <ng-container matColumnDef="lastname">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> lastname </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> apellido </th>
                 <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
               </ng-container>
               <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> nombre </th>
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
               </ng-container>
               <ng-container matColumnDef="username">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>
               </ng-container>
-              <ng-container matColumnDef="password" >
+              <ng-container matColumnDef="height">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> estatura </th>
+                <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+              </ng-container>
+              <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> peso corporal </th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
+             <!-- <ng-container matColumnDef="password" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> password </th>
                 <td mat-cell *matCellDef="let element"> {{element.password}} </td>
-              </ng-container>
+              </ng-container>-->
              <!-- <ng-container matColumnDef="roles">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> roles </th>
                 <td mat-cell *matCellDef="let element"> {{element.roles}} </td>

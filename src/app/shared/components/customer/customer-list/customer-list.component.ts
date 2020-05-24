@@ -20,7 +20,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class CustomerListComponent implements OnInit {
   
   customers: Customer[] = [];
-  displayedColumns: string[] = ['actions','address', 'id','birthday','lastname', 'name','username','password'];
+  //displayedColumns: string[] = ['actions','address', 'id','birthday','lastname', 'name','username','password'];
+  displayedColumns: string[] = ['actions','id','address','birthday','lastname', 'name',"gender","height","weight","nroDoc","username"];
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
@@ -36,8 +37,14 @@ export class CustomerListComponent implements OnInit {
     lastnameFilter=new FormControl();
     nameFilter=new FormControl();
     usernameFilter=new FormControl();
+    genderFilter=new FormControl();
+    heightFilter=new FormControl();
+    weightFilter=new FormControl();
+    nroDocFilter=new FormControl();
+    
 
-  filteredValues={id:"",address:"",birthday:"",lastname:"",name:"",username:""}
+  //filteredValues={id:"",address:"",birthday:"",lastname:"",name:"",username:""}
+  filteredValues={id:"",address:"",birthday:"",lastname:"",name:"",gender:"",height:"",weight:"",nroDoc:"",username:""}
   
   listData:MatTableDataSource<any>;
   
@@ -54,7 +61,11 @@ export class CustomerListComponent implements OnInit {
               lastname:item.lastname,
               name:item.name,
               username:item.username,
-              password:item.password.substring(0,1)
+              password:item.password.substring(0,1),
+              gender:item.gender,
+              height:item.height,
+              weight:item.weight,
+              nroDoc:item.nroDoc
              // roles:item.roles
             };
           }
@@ -96,6 +107,22 @@ export class CustomerListComponent implements OnInit {
       this.filteredValues['username']=usernameFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
+    this.genderFilter.valueChanges.subscribe(genderFilterValue=>{
+      this.filteredValues['gender']=genderFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.heightFilter.valueChanges.subscribe(heightFilterValue=>{
+      this.filteredValues['height']=heightFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.weightFilter.valueChanges.subscribe(weightFilterValue=>{
+      this.filteredValues['weight']=weightFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
+    this.nroDocFilter.valueChanges.subscribe(nroDocFilterValue=>{
+      this.filteredValues['nroDoc']=nroDocFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
 
     this.listData.filterPredicate=this.customFilterPredicate();
   }
@@ -110,10 +137,14 @@ export class CustomerListComponent implements OnInit {
       let lastnameFound=data.lastname.toString().trim().indexOf(searchString.lastname)!==-1
       let nameFound=data.name.toString().trim().indexOf(searchString.name)!==-1
       let usernameFound=data.username.toString().trim().indexOf(searchString.username)!==-1
+      let genderFound=data.gender.toString().trim().indexOf(searchString.gender)!==-1
+      let heightFound=data.height.toString().trim().indexOf(searchString.height)!==-1
+      let weightFound=data.weight.toString().trim().indexOf(searchString.weight)!==-1
+      let nroDodFound=data.nroDoc.toString().trim().indexOf(searchString.nroDoc)!==-1
     if(searchString.topFilter){
-      return addresFound || birthdayFound || lastnameFound || nameFound || usernameFound
+      return addresFound || birthdayFound || lastnameFound || nameFound || genderFound || heightFound || weightFound || nroDodFound || usernameFound
     }else{
-      return addresFound && birthdayFound && lastnameFound && nameFound && usernameFound
+      return addresFound && birthdayFound && lastnameFound && nameFound &&  genderFound && heightFound  &&  weightFound &&  nroDodFound && usernameFound
     }
     
     }

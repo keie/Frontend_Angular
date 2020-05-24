@@ -20,8 +20,12 @@ export class CustomerService {
     birthday:new FormControl('',Validators.required),
     address:new FormControl('',Validators.required),
     username:new FormControl('',Validators.email),
-    password:new FormControl('',[Validators.required,Validators.minLength(8)])
+    nroDoc:new FormControl('',Validators.required),
+    //password:new FormControl('',[Validators.required,Validators.minLength(8)]),
     //roles:new FormControl(0)
+    gender:new FormControl(0),
+    height:new FormControl('',Validators.required),
+    weight:new FormControl('',Validators.required)
   });
 
   initializeFormGroup(){
@@ -32,7 +36,11 @@ export class CustomerService {
       birthday:'',
       address:'',
       username:'',
-      password:''
+      //password:'',
+      nroDoc:'',
+      gender:'',
+      height:'',
+      weight:''
       //roles:''
     });
   }
@@ -54,9 +62,13 @@ export class CustomerService {
       "lastname":data.lastname,
       "birthday":data.birthday,
       "address":data.address,
+      //"username":data.username,
       "username":data.username,
-      "password":data.password,
-      "gender":"M",
+      "password":"NA",
+      "nroDoc":data.nroDoc,
+      "gender":data.gender,
+      "height":data.height,
+      "weight":data.weight,
       "roles":[]
     }
     return this.http.post(`${environment.urlLocal}User/insert`,json)
@@ -74,7 +86,11 @@ export class CustomerService {
       "birthday":data.birthday,
       "address":data.address,
       "username":data.username,
-      "password":data.password,
+      "nroDoc":data.nroDoc,
+      "gender":data.gender,
+      "height":data.height,
+      "weight":data.weight,
+      //"password":data.password,
       "roles":[]
     }
     return this.http.put(`${environment.urlLocal}User/update`,json)
@@ -99,8 +115,12 @@ export class CustomerService {
       lastname:customer.lastname,
       birthday:customer.birthday,
       address:customer.address,
+      weight:customer.weight,
+      height:customer.height,
+      nroDoc:customer.nroDoc,
+      gender:customer.gender,
       username:customer.username,
-      password:customer.password
+      //password:customer.password
     });
   }
 
