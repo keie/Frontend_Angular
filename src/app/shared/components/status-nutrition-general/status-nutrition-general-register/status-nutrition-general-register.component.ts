@@ -34,11 +34,16 @@ export class StatusNutritionGeneralRegisterComponent implements OnInit {
     this.serviceKg.getKgValueList()
     .subscribe(list=>{
       let array=list.map(item=>{
+        if(item.boolDelete!=1){
         return{
           id:item.id,
           firstValue:item.firstValue,
           secondValue:item.secondValue
         };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
       });
       this.kgValues=new Array(array);
       this.kgValues=array
@@ -47,11 +52,16 @@ export class StatusNutritionGeneralRegisterComponent implements OnInit {
   this.serviceSv.getSizeValueList()
     .subscribe(list=>{
       let array=list.map(item=>{
+        if(item.boolDelete!=1){
         return{
           id:item.id,
           firstValue:item.firstValue,
           secondValue:item.secondValue
         };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
       });
       this.sizeValues=new Array(array);
       this.sizeValues=array
@@ -60,12 +70,17 @@ export class StatusNutritionGeneralRegisterComponent implements OnInit {
     this.servicePreference.getPersonReferenceList()
     .subscribe(list=>{
       let array=list.map(item=>{
+        if(item.boolDelete!=1){
         return{
           id:item.id,
           age:item.age,
           smallerThan:item.smallerThan,
           greaterThan:item.greaterThan
         };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
       });
       this.pReferences=new Array(array);
       this.pReferences=array
@@ -74,11 +89,17 @@ export class StatusNutritionGeneralRegisterComponent implements OnInit {
     this.serviceGrade.getGradeList()
     .subscribe(list=>{
       let array=list.map(item=>{
+        if(item.boolDelete!=1){
         return{
           id:item.id,
           name:item.name,
-          description:item.description
+          description:item.description,
+          gender:item.gender
         };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
       });
       this.grades=new Array(array);
       this.grades=array
@@ -100,7 +121,7 @@ export class StatusNutritionGeneralRegisterComponent implements OnInit {
       if(this.service.form.valid){
         const obj=Object.assign({},this.sNgeneral,this.service.form.value)
         if(!this.service.form.get('id').value){
-          this.service.insertKgValue(obj)
+          this.service.insertStatusNutritionGeneral(obj)
           .subscribe(response=>{
             if(response.status!=0){
               flag++;

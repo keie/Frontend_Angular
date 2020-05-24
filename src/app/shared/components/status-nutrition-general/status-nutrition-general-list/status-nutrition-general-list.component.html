@@ -19,6 +19,10 @@
                                 <mat-label>genero sexual</mat-label>
                                 <input matInput (keyup)="applyFilter()" placeholder="gender" [formControl]="genderFilter">
                             </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>grado</mat-label>
+                                <input matInput (keyup)="applyFilter()" placeholder="name" [formControl]="nameFilter">
+                            </mat-form-field>
                             
                         </div>
                         <button mat-raised-button  (click)="onCreate()">
@@ -37,11 +41,11 @@
                             </ng-container>
                             <ng-container matColumnDef="kgValues">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Rango en kilos</th>
-                                <td mat-cell *matCellDef="let element"> {{element.kgValues[0].firstValue}}--{{element.kgValues[0].secondValue}}</td>
+                                <td mat-cell *matCellDef="let element"> {{element.kgValues[0].firstValue}}(kg)--{{element.kgValues[0].secondValue}}(kg)</td>
                             </ng-container>
                             <ng-container matColumnDef="sizeValues">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Rango en estatura</th>
-                                <td mat-cell *matCellDef="let element"> {{element.sizeValues[0].firstValue}}--{{element.sizeValues[0].secondValue}} </td>
+                                <td mat-cell *matCellDef="let element"> {{element.sizeValues[0].firstValue}}(cm)--{{element.sizeValues[0].secondValue}}(cm) </td>
                             </ng-container>
                             <ng-container matColumnDef="smaller">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> menor a la edad referenciada?</th>
@@ -53,7 +57,7 @@
                             </ng-container>
                             <ng-container matColumnDef="pReferencesGender">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> genero de referencia </th>
-                                <td mat-cell *matCellDef="let element"> {{element.pReferences[0].gender}}  </td>
+                                <td mat-cell *matCellDef="let element"> {{element.grades[0].gender}}  </td>
                             </ng-container>
                             <ng-container matColumnDef="gradesName" >
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> estado </th>

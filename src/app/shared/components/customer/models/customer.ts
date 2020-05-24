@@ -7,6 +7,9 @@ export interface Customer {
     address: string;
     username: string;
     password: string;
+    gender:any;
+    height:any;
+    weight:any;
     boolDelete:any;
     roles: [];
 }

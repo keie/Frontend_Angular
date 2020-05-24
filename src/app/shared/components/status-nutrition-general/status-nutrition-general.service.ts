@@ -47,7 +47,7 @@ export class StatusNutritionGeneralService {
     return response;
   }
 
-  insertKgValue(data:statusNutritionGeneral): Observable<Response>{
+  insertStatusNutritionGeneral(data:statusNutritionGeneral): Observable<Response>{
     
     var json={
       

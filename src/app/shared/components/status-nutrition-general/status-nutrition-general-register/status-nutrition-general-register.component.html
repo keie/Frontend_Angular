@@ -13,7 +13,7 @@
                     <mat-select formControlName="kgValues" placeholder="Intervalos de kilogramos">
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let kgValue  of kgValues">
-                            <mat-option value="{{kgValue.id}}">{{kgValue.firstValue}}--{{kgValue.secondValue}}</mat-option>
+                            <mat-option value="{{kgValue.id}}">{{kgValue.firstValue}}(kg)--{{kgValue.secondValue}}(kg)</mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
@@ -21,7 +21,7 @@
                     <mat-select formControlName="sizeValues" placeholder="Intervalos de estatura">
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let sizeValue  of sizeValues">
-                            <mat-option value="{{sizeValue.id}}">{{sizeValue.firstValue}}--{{sizeValue.secondValue}}</mat-option>
+                            <mat-option value="{{sizeValue.id}}">{{sizeValue.firstValue}}(cm)--{{sizeValue.secondValue}}(cm)</mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
@@ -29,7 +29,7 @@
                     <mat-select formControlName="pReferences" placeholder="referencias personales">
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let pReference  of pReferences">
-                            <mat-option value="{{pReference.id}}">{{pReference.smallerThan==1?"Menor de ":"Mayor de"}} {{pReference.age}} (años) </mat-option>
+                            <mat-option value="{{pReference.id}}">{{pReference.smallerThan==1?"Menor de ":"Mayor de"}} {{pReference.age}} (años)  </mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
@@ -37,7 +37,7 @@
                     <mat-select formControlName="grades" placeholder="grado ">
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let grade  of grades">
-                            <mat-option value="{{grade.id}}">{{grade.name}}-- codigo: {{grade.description}} </mat-option>
+                            <mat-option value="{{grade.id}}">{{grade.name}}-- codigo: {{grade.description}}--genero: {{grade.gender=="M"?"Masculino ":"Femenino"}} </mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>

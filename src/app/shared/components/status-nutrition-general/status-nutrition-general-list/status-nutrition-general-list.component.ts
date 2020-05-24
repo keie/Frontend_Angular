@@ -25,7 +25,7 @@ export class StatusNutritionGeneralListComponent implements OnInit {
   isVisible= false;
   colorDeficit='red';
   colorNormal='#00BFFF';
-  colorExc='orange';
+  colorExc='#FF7133';
   colorDeficitL='yellow';
   colorNormalL='white';
   colorExcL='white';
@@ -33,8 +33,8 @@ export class StatusNutritionGeneralListComponent implements OnInit {
     private dialog:MatDialog,private notificationService:NotificationService) { }
   
   genderFilter=new FormControl();
-  ageFilter=new FormControl();
-  filteredValues={gender:""}
+  nameFilter=new FormControl();
+  filteredValues={gender:"",name:""}
   
   listData:MatTableDataSource<any>;
 
@@ -43,10 +43,10 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       if(row=='NORMAL'){
         return this.colorNormal;
       }
-      if(row=='EXCESO'){
-        this.colorExc;
+      if(row=='DEFICIT'){
+        return this.colorDeficit;
       }
-      return this.colorDeficit;
+      return this.colorExc;
     }
     getColorL(row){
       if(row=='DEFICIT'){
@@ -91,6 +91,10 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       this.filteredValues['gender']=genderFilterValue;
       this.listData.filter=JSON.stringify(this.filteredValues);
     })
+    this.nameFilter.valueChanges.subscribe(nameFilterValue=>{
+      this.filteredValues['name']=nameFilterValue;
+      this.listData.filter=JSON.stringify(this.filteredValues);
+    })
     
     this.listData.filterPredicate=this.customFilterPredicate();
   }
@@ -98,12 +102,13 @@ export class StatusNutritionGeneralListComponent implements OnInit {
   customFilterPredicate(){
     const myFilterPredicate=function(data:statusNutritionGeneral,filter:string):boolean{
       let searchString=JSON.parse(filter);
-      let genderFound=data.pReferences[0].gender.toString().trim().indexOf(searchString.gender)!==-1
+      let genderFound=data.grades[0].gender.toString().trim().indexOf(searchString.gender)!==-1
+      let nameFound=data.grades[0].name.toString().trim().indexOf(searchString.name)!==-1
       
       if(searchString.topFilter){
-        return  genderFound 
+        return  genderFound || nameFound
       }else{
-        return  genderFound 
+        return  genderFound && nameFound
       }
     }
     return myFilterPredicate;
