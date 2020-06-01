@@ -8,8 +8,8 @@ export interface Customer {
     username: string;
     password: string;
     gender:any;
-    height:any;
-    weight:any;
+   //height:any;
+    //weight:any;
     nroDoc:any;
     boolDelete:any;
     roles: [];

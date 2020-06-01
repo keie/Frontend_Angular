@@ -19,7 +19,7 @@ import { PersonalReference } from '../../personal-reference/models/PersonalRefer
 export class StatusNutritionGeneralListComponent implements OnInit {
 
   statusNvalues:statusNutritionGeneral[]=[]
-  displayedColumns: string[] = ['actions','id','kgValues', 'sizeValues','smaller','pReferencesAge','pReferencesGender','gradesName','gradesDescription'];
+  displayedColumns: string[] = ['actions','id','kgValues', 'sizeValues','smaller','pReferencesAge','pReferencesGender','gradesName','gradesDescription','pregnancy'];
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator:MatPaginator
   isVisible= false;
@@ -58,7 +58,7 @@ export class StatusNutritionGeneralListComponent implements OnInit {
       return this.colorExcL;
     }
   reload(){
-    this.isVisible=true;
+    //this.isVisible=true;
     this.statusNservice.getStatusNutritionList().subscribe(
       list=>{
         let array=list.map(item=>{

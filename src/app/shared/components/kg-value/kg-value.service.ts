@@ -75,11 +75,4 @@ export class KgValueService {
       map((response:any)=>response)
     );
   }
-
-  
-
-
-  
-
-
 }

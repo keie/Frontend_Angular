@@ -32,14 +32,14 @@
                 <mat-label>genero</mat-label>
                 <input matInput  (keyup)="applyFilter()" placeholder="genero" [formControl]="genderFilter">
               </mat-form-field>
-              <mat-form-field>
+              <!--<mat-form-field>
                 <mat-label>estatura</mat-label>
                 <input matInput  (keyup)="applyFilter()" placeholder="estatura" [formControl]="heightFilter">
               </mat-form-field>
               <mat-form-field>
                 <mat-label>peso corporal</mat-label>
                 <input matInput  (keyup)="applyFilter()" placeholder="peso corporal" [formControl]="weightFilter">
-              </mat-form-field>
+              </mat-form-field>-->
               <mat-form-field>
                 <mat-label>nro documento</mat-label>
                 <input matInput  (keyup)="applyFilter()" placeholder="nro documento" [formControl]="nroDocFilter">
@@ -107,14 +107,14 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>
               </ng-container>
-              <ng-container matColumnDef="height">
+              <!--<ng-container matColumnDef="height">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> estatura </th>
                 <td mat-cell *matCellDef="let element"> {{element.height}} </td>
               </ng-container>
               <ng-container matColumnDef="weight">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> peso corporal </th>
                 <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-              </ng-container>
+              </ng-container>-->
              <!-- <ng-container matColumnDef="password" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> password </th>
                 <td mat-cell *matCellDef="let element"> {{element.password}} </td>

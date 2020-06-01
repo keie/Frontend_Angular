@@ -29,17 +29,24 @@
                                     <mat-error>este campo es obligatorio</mat-error>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <input formControlName="height" type="number" matInput placeholder="estatura en (cm)">
-                                    <mat-error>este campo es obligatorio</mat-error>
+                                    <mat-select formControlName="sizeValues" placeholder="estatura apoximada">
+                                        <mat-option>None</mat-option>
+                                        <ng-container *ngFor="let sizeValue  of sizeValues">
+                                            <mat-option value="{{sizeValue.id}}">{{sizeValue.firstValue}}(cm)--{{sizeValue.secondValue}}(cm)</mat-option>
+                                        </ng-container>
+                                    </mat-select>
                                 </mat-form-field>
-                                
                             </div>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <div class="controles-container">
                                 <mat-form-field>
-                                    <input formControlName="weight" type="number" matInput placeholder="peso corporal en (kg)">
-                                    <mat-error>este campo es obligatorio</mat-error>
+                                    <mat-select formControlName="kgValues" placeholder="peso aproximado">
+                                        <mat-option>None</mat-option>
+                                        <ng-container *ngFor="let kgValue  of kgValues">
+                                            <mat-option value="{{kgValue.id}}">{{kgValue.firstValue}}(kg)--{{kgValue.secondValue}}(kg)</mat-option>
+                                        </ng-container>
+                                    </mat-select>
                                 </mat-form-field>
                               <!--  <mat-form-field>
                                     <mat-select formControlName="roles" placeholder="roles">

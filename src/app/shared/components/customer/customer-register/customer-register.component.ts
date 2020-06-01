@@ -6,6 +6,9 @@ import { Roles } from 'src/app/auth/roles.enum';
 import { NotificationService } from '../../notification/notification.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { KgValueService } from '../../kg-value/kg-value.service';
+import { GradeService } from '../../grade/grade.service';
+import { SizeValueService } from '../../size-value/size-value.service';
 
 @Component({
   selector: 'app-customer-register',
@@ -15,7 +18,9 @@ import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 export class CustomerRegisterComponent implements OnInit {
   customer:Customer
   constructor(public service:CustomerService,
-    public serviceRol:RolService, 
+    public serviceRol:RolService,
+    public serviceKg:KgValueService,
+    public serviceSize:SizeValueService, 
     public serviceNotification:NotificationService,
     public dialogRef:MatDialogRef<CustomerRegisterComponent>) { 
   }
@@ -23,7 +28,8 @@ export class CustomerRegisterComponent implements OnInit {
 
   roles:Array<any>;
   flag:number =0;
-
+  kgValues:Array<any>;
+  sizeValues:Array<any>;
   ngOnInit(): void {
     this.service.getCustomerList();
     this.serviceRol.getListRol()
@@ -38,6 +44,41 @@ export class CustomerRegisterComponent implements OnInit {
       this.roles=new Array(array);
       this.roles=array
       
+    });
+    this.serviceKg.getKgValueList()
+    .subscribe(list=>{
+      let array=list.map(item=>{
+        if(item.boolDelete!=1){
+        return{
+          id:item.id,
+          firstValue:item.firstValue,
+          secondValue:item.secondValue
+        };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
+      });
+      this.kgValues=new Array(array);
+      this.kgValues=array
+    });
+
+    this.serviceSize.getSizeValueList()
+    .subscribe(list=>{
+      let array=list.map(item=>{
+        if(item.boolDelete!=1){
+        return{
+          id:item.id,
+          firstValue:item.firstValue,
+          secondValue:item.secondValue
+        };
+      }
+      });
+      array = array.filter(function(dato){
+        return dato != undefined
+      });
+      this.sizeValues=new Array(array);
+      this.sizeValues=array
     });
   }
 

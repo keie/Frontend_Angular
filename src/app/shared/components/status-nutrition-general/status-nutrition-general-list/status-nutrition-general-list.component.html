@@ -67,6 +67,10 @@
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> codigo y descripcion </th>
                                 <td mat-cell *matCellDef="let element"  > {{element.grades[0].description}}   </td>
                             </ng-container>
+                            <ng-container matColumnDef="pregnancy" >
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> estado de embarazo </th>
+                                <td mat-cell *matCellDef="let element"  > {{element.grades[0].boolPregnancy==1?"positivo":"negativo"}}   </td>
+                            </ng-container>
                            
 
                             <ng-container matColumnDef="loading">

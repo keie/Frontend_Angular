@@ -24,8 +24,10 @@ export class CustomerService {
     //password:new FormControl('',[Validators.required,Validators.minLength(8)]),
     //roles:new FormControl(0)
     gender:new FormControl(0),
-    height:new FormControl('',Validators.required),
-    weight:new FormControl('',Validators.required)
+    //height:new FormControl('',Validators.required),
+    //weight:new FormControl('',Validators.required)
+    kgValues: new FormControl('',Validators.required),
+    sizeValues:new FormControl('',Validators.required)
   });
 
   initializeFormGroup(){
@@ -39,8 +41,10 @@ export class CustomerService {
       //password:'',
       nroDoc:'',
       gender:'',
-      height:'',
-      weight:''
+      kgValues:'',
+      sizeValues:''
+      //height:'',
+      //weight:''
       //roles:''
     });
   }
@@ -67,8 +71,8 @@ export class CustomerService {
       "password":"NA",
       "nroDoc":data.nroDoc,
       "gender":data.gender,
-      "height":data.height,
-      "weight":data.weight,
+      //"height":data.height,
+      //"weight":data.weight,
       "roles":[]
     }
     return this.http.post(`${environment.urlLocal}User/insert`,json)
@@ -88,8 +92,8 @@ export class CustomerService {
       "username":data.username,
       "nroDoc":data.nroDoc,
       "gender":data.gender,
-      "height":data.height,
-      "weight":data.weight,
+      //"height":data.height,
+      //"weight":data.weight,
       //"password":data.password,
       "roles":[]
     }
@@ -115,8 +119,8 @@ export class CustomerService {
       lastname:customer.lastname,
       birthday:customer.birthday,
       address:customer.address,
-      weight:customer.weight,
-      height:customer.height,
+      kgValues:"NA",
+      sizeValues:"NA",
       nroDoc:customer.nroDoc,
       gender:customer.gender,
       username:customer.username,
