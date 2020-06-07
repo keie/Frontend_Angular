@@ -5,6 +5,7 @@ import { StatusNutritionImcRoutingModule } from './status-nutrition-imc-routing.
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared.module';
+import { StatusNutritionImcRegisterComponent } from './status-nutrition-imc-register/status-nutrition-imc-register.component';
 
 
 

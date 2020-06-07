@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { imc } from '../models/imc';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationService } from '../../notification/notification.service';
 import { StatusNutritionImcService } from '../status-nutrition-imc.service';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { StatusNutritionImcRegisterComponent } from '../status-nutrition-imc-register/status-nutrition-imc-register.component';
 
 @Component({
   selector: 'app-status-nutrition-imc-list',
@@ -82,6 +83,43 @@ export class StatusNutritionImcListComponent implements OnInit {
       }
     }
     return myFilterPredicate;
+  }
+
+
+  onCreate(){
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    this.dialog.open(StatusNutritionImcRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  onEdit(row){
+    this.imcService.populateForm(row);
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%";
+    dialogConfig.height="75%";
+    console.log(this.imcService.form)
+    this.dialog.open(StatusNutritionImcRegisterComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(res => {
+      this.reload();
+      });
+  }
+
+  onDelete(data){
+    if(confirm("Estas seguro de eliminar este registro?")){
+      this.imcService.deleteImc(data)
+      .subscribe(res=>{
+        this.reload();
+      });
+      this.notificationService.warn("Registro borrado con exito");
+    }
   }
 
 }

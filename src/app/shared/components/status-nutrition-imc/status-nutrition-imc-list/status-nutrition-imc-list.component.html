@@ -4,7 +4,7 @@
     <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
     <main>
         <div class="container-fluid">
-            <h1 class="mt-4">Peso corporal</h1>
+            <h1 class="mt-4">Valores de indice de masa corporal</h1>
             <div class="card mb-4">
                 
                 
@@ -21,15 +21,15 @@
                             </mat-form-field>
                             
                         </div>
-                        <button mat-raised-button  >
+                        <button mat-raised-button  (click)="onCreate()">
                             <mat-icon>add</mat-icon>create
                           </button>
                           <table mat-table [dataSource]="listData" class="mat-elevation-z8" matSort>
                             <ng-container matColumnDef="actions">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>actions</th>
                                 <td mat-cell *matCellDef="let row">
-                                  <button mat-icon-button ><mat-icon>launch</mat-icon></button>
-                                  <button mat-icon-button color="warn" ><mat-icon>delete_outline</mat-icon></button>
+                                  <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                                  <button mat-icon-button color="warn" (click)="onDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="id">

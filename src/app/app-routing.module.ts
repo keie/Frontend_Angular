@@ -79,6 +79,11 @@ const appRoutes:Routes=[
     pathMatch:'full'
   },
   {
+    path:'statusNutritionImcRegister',
+    loadChildren:()=> import('./shared/components/status-nutrition-imc/status-nutrition-imc-register/status-nutrition-imc-register.module').then(m => m.StatusNutritionImcRegisterModule),
+    pathMatch:'full'
+  },
+  {
     path:'logout',
     component:LogoutComponent
   }/* ,
